@@ -27,6 +27,7 @@ public class LoginController implements Controller {
 			viewPath="redirect:index.jsp";
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", memberVO);
+			
 			//조회수
 			session.setAttribute("communityboard", new ArrayList<Long>());
 		}

@@ -15,8 +15,8 @@
 <body>
 	<div class="container pt-3">
 	<form action="test3.jsp" method="post" enctype="multipart/form-data">
-	제목: <input type="text" name="subject"/><br/>
-	파일: <input type="file" name="upload"/><br/>
+		제목: <input type="text" name="subject"/><br/>
+		파일: <input type="file" name="upload"/><br/>
 	<input type="submit" value="전송"/>
 </form>
 </div>

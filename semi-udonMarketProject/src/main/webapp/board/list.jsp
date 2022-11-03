@@ -13,9 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="container pt-3">
 
-상세글보기 <a href="${pageContext.request.contextPath}/BoardDetailController.do?board_no=1">상세글보기</a>
-</div>
 </body>
 </html>

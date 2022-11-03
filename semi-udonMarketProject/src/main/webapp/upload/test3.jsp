@@ -14,18 +14,14 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 	//위치, 경로, 사이즈 파일을 보낼때 알아두어야함 Context가 나오면 글로벌 모든 폴더와 파일에서 사용가능
-	
 	//서버 디폴트 경로
 	String root = pageContext.getServletContext().getRealPath("/");
 	System.out.println(root);	
-	
 	//저장되는 위치와 폴더
 	String path = root + "pds" + File.separator + "saveData"; //파일의 위치를 정하고.
 	//String path = "c:\\pds\\saveData"; 위 대신 이렇게 적어도 된다.
 	//저장 공간이 될 폴더가 없으면 폴더 생성
-	
 	System.out.println(path);	
-	
 	File f = new File(path);
 	if(!f.exists()){ //f 의 경로가 존재하지 않으면
 		f.mkdirs(); //경로의 파일을 만들어라
