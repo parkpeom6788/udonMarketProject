@@ -1,9 +1,14 @@
 package org.kosta.udonmarket.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.kosta.udonmarket.model.MarketBoardDAO;
+import org.kosta.udonmarket.model.MarketBoardVO;
+import org.kosta.udonmarket.model.MarketDAO;
 import org.kosta.udonmarket.model.MarketVO;
 import org.kosta.udonmarket.model.MemberVO;
 
@@ -14,17 +19,20 @@ public class WritePostController implements Controller {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		System.out.println("title"+title);
-		System.out.println("content"+content);
 
 		MemberVO memberVO = (MemberVO)session.getAttribute("mvo");
-		System.out.println(memberVO);
 		String id = memberVO.getId();
-		System.out.println(id);
 	
 		if(session != null || memberVO != null) {
 			MarketBoardDAO.getInstance().posting(title, content, id);
 		}
-		return "board/list.jsp";
+		
+		MarketVO marketVO = MarketDAO.getInstance().findMarketInfo(id);
+		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id);
+		
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("marketVO", marketVO);
+		request.setAttribute("url", "board/list.jsp");
+		return "layout.jsp";
 	}
 }

@@ -94,7 +94,7 @@ public class MarketBoardDAO {
 		return marketBoardVO;
 	}
 	
-	public ArrayList<MarketBoardVO> findBoardList() throws SQLException {
+	public ArrayList<MarketBoardVO> findBoardList(String id) throws SQLException {
 		ArrayList<MarketBoardVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -105,8 +105,10 @@ public class MarketBoardDAO {
 			sql.append("SELECT b.board_no, b.title, TO_CHAR(b.time_posted,'YYYY/MM/DD') AS time_posted, b.hits, m.id, m.market_name, m.market_address, m.market_tel, m.info, m.item, m.market_no ");
 			sql.append("FROM udon_market_board b ");
 			sql.append("INNER JOIN udon_market m ON b.id = m.id ");
+			sql.append("WHERE b.id=? ");
 			sql.append("ORDER BY b.board_no DESC");
 			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MarketBoardVO marketBoardVO = new MarketBoardVO();
