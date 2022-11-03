@@ -59,7 +59,7 @@
     <!-- Home-Main Start -->
     <div class="container-fluid bg-light bg-icon my-5 py-6">
         <div class="container">
-			<%-- <c:import url="${requestScope.url }"></c:import> --%>
+			<c:import url="${requestScope.url }"></c:import>
         </div>
     </div>
     <!-- Home-Main End -->
