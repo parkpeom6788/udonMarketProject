@@ -12,7 +12,7 @@
 		             <img class="img-fluid mb-4" src="img/icon-1.png" alt="">
 		             <h4 class="mb-3" font-family="'Jua', sans-serif">${list.marketName }</h4>
 		             <p class="mb-4">${list.info }</p>
-		             <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">View More</a>
+		             <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="FindBoardListController.do?id=${list.id }">View More</a>
 		         </div>
 		     </div>
 	     </c:forEach>

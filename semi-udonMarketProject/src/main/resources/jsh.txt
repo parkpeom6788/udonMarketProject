@@ -16,13 +16,17 @@
 									| forward
 								home.jsp ( url = home-market-list.jsp 	)	
 								
-4. 상점게시판리스트 조회
+4. 상점정보 View More 에서 상점게시판리스트 조회
 	FrontControllerServlet  ---  HandlerMapping  --- FindBoardListController  ---  Model  --- DB
-					|																											  FindBoardList() : ArrayList<MarketVO>
+					|																											  findBoardList() : ArrayList<MarketVO>
 					| forward
 			layout.jsp( url = board/list.jsp )
 	
-	
+5. 상점정보 View More 에서 상점정보 조회
+	FindBoardListController  ---  Model  --- DB
+					|							findMarketInfo() : MarketVO
+					|
+			board/board-market-info.jsp
 	
 	
 	
