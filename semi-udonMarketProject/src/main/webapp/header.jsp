@@ -12,17 +12,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="" class="nav-item nav-link text-primary">동네주민</a>
-                    <a href="" class="nav-item nav-link text-secondary">상점주인</a>
-                    <a href="WriteBoardFormController.do" class="nav-item nav-link">글쓰기</a>
-                    <a class="nav-item nav-link">아이유님</a>
-                    <a href="" class="nav-item nav-link">로그아웃</a>
+                	<c:if test="${sessionScope.mvo!=null}">
+                      <a href="" class="nav-item nav-link text-primary">동네주민</a>
+                      <a href="" class="nav-item nav-link text-secondary">상점주인</a>
+                      <a href="WriteBoardFormController.do" class="nav-item nav-link">글쓰기</a>
+                      <a class="nav-item nav-link">${sessionScope.mvo.name}님</a>
+                      <a href="javascript:logout()" class="nav-item nav-link">로그아웃</a>
+                      <form id="logoutForm" action="LogoutController.do" method="post"></form>
+		              <script type="text/javascript">
+		                function logout() {
+						  if(confirm("로그아웃 하시겠습니까?")){
+						    document.getElementById("logoutForm").submit();
+						  }
+						}
+		               </script>
+                    </c:if>
                 </div>
+                <c:if test="${sessionScope.mvo==null}">
                 <div class="d-none d-lg-flex ms-2">
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="LoginFormController.do">
                         <small class="fa fa-user text-body"></small>
                     </a>
                 </div>
+                </c:if>
             </div>
         </nav>
     </div>
