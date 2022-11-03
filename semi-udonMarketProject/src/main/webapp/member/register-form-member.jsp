@@ -4,18 +4,18 @@
 
 
 <form action="${pageContext.request.contextPath}/RegisterMemberController.do" method="post" onsubmit="check(event)">
-<h3>회원가입</h3>
-<input type="text" name="id" id="id" placeholder="아이디" required="required" onkeyup="checkId()"> 4자 이상 입력하세요
-<span id = "checkResultId"></span><br>
-<input type="password" id="password" name="password" placeholder="비밀번호" required="required" > 5자 이상 입력하세요<br>
-<input type="password" id="passwordcheck" name="passwordcheck" placeholder="비밀번호확인" required="required"><br>
-<input type="text" name="name"  placeholder="이름" required="required"><br>
-<input type="text" name="no"  id = "no" placeholder="주민번호" required="required"> 9자리 입력하세요 (000000-000 으로 작성하세요)<br>
-<input type="text" name="address" id="address" placeholder="주소" required="required"><br>
-<input type="text" name="tel" id = "tel"  placeholder="전화번호" required="required"> 11자리 입력하세요 (000-0000-0000 으로 작성하세요)<br>
+<br><h3>회원가입</h3><br><br>
+<input class="form-control-lg" type="text" name="id" id="id" placeholder="아이디" required="required" onkeyup="checkId()"> 4자 이상 입력하세요
+<span id = "checkResultId"></span><br><br>
+<input class="form-control-lg" type="password" id="password" name="password" placeholder="비밀번호" required="required" > 5자 이상 입력하세요<br><br>
+<input class="form-control-lg" type="password" id="passwordcheck" name="passwordcheck" placeholder="비밀번호확인" required="required"><br><br>
+<input class="form-control-lg" type="text" name="name"  placeholder="이름" required="required"><br><br>
+<input class="form-control-lg" type="text" name="no"  id = "no" placeholder="주민번호" required="required"> 9자리 입력하세요 (000000-000 으로 작성하세요)<br><br>
+<input class="form-control-lg" type="text" name="address" id="address" placeholder="주소" required="required"><br><br>
+<input class="form-control-lg" type="text" name="tel" id = "tel"  placeholder="전화번호" required="required"> 11자리 입력하세요 (000-0000-0000 으로 작성하세요)<br><br>
 
-<br>
-<button type="submit">회원가입</button>
+<br><br>
+<button type="submit" class="btn-lg">회원가입</button>
 </form>
 
 <script type="text/javascript">
