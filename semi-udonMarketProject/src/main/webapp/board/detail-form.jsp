@@ -14,8 +14,29 @@
 </head>
 <body>
 <div class="container pt-3">
-
-상세글보기 <a href="${pageContext.request.contextPath}/BoardDetailController.do?board_no=1">상세글보기</a>
+<table class="table">
+	<thead>
+		<tr>
+			<td>글번호 ${requestScope.vo.boardNo}</td>
+			<td>제목 ${requestScope.vo.title}</td>
+			<td>조회수 ${requestScope.vo.hits}</td>
+			<td>${requestScope.vo.timePosted}</td>
+		</tr>
+		<tbody style="center">
+		<tr>
+		<td colspan="5">
+			 <pre>
+		 		<font size="4">${requestScope.vo.content}</font>
+		 	</pre>
+		</td>
+	</tr>
+	</thead>
+	</tbody>
+</table>
 </div>
+	<div align="center">
+		<button type="button" onclick="deletePost()">삭제</button>			
+		<button type="button" onclick="updatePost()">수정</button>	
+	</div>
 </body>
 </html>

@@ -7,11 +7,9 @@ public class MarketBoardVO {
 	private String timePosted;
 	private long hits;
 	private MarketVO marketVO;
-	
 	public MarketBoardVO() {
 		super();
 	}
-
 	// 상세글보기
 	public MarketBoardVO(long boardNo, String title, String content, String timePosted, long hits, MarketVO marketVO) {
 		super();
@@ -22,7 +20,6 @@ public class MarketBoardVO {
 		this.hits = hits;
 		this.marketVO = marketVO;
 	}
-
 	// 게시글전체리스트
 	public MarketBoardVO(long boardNo, String title, String timePosted, long hits, MarketVO marketVO) {
 		super();
@@ -32,7 +29,7 @@ public class MarketBoardVO {
 		this.hits = hits;
 		this.marketVO = marketVO;
 	}
-
+	
 	//게시글 작성하기
 	public MarketBoardVO(String title, String content, MarketVO marketVO) {
 		super();

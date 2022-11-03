@@ -13,9 +13,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="container pt-3">
-
-상세글보기 <a href="${pageContext.request.contextPath}/BoardDetailController.do?board_no=1">상세글보기</a>
+	<div class="container pt-3">
+	<form action="test3.jsp" method="post" enctype="multipart/form-data">
+	제목: <input type="text" name="subject"/><br/>
+	파일: <input type="file" name="upload"/><br/>
+	<input type="submit" value="전송"/>
+</form>
 </div>
 </body>
 </html>

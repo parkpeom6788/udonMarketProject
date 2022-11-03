@@ -40,7 +40,6 @@ INSERT INTO udon_market(id,market_name,market_address,market_tel,item,info,marke
 SELECT * FROM udon_market;
 COMMIT
 
-
 CREATE TABLE udon_market_board(
 	board_no NUMBER PRIMARY KEY,
 	title VARCHAR2(100) NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE udon_market_board(
 	CONSTRAINT undon_market_board_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
 )
 CREATE SEQUENCE undon_market_board_seq;
-
+DROP SEQUENCE undon_market_board_seq;
 DROP TABLE udon_market_board;
 
 INSERT INTO udon_market_board(board_no,title,content,time_posted,id) VALUES(undon_market_board_seq.nextval,'우동마켓','오늘은 목요일',SYSDATE,'java4');
@@ -60,7 +59,6 @@ INSERT INTO udon_market_board(board_no,title,content,time_posted,id) VALUES(undo
 INSERT INTO udon_market_board(board_no,title,content,time_posted,id) VALUES(undon_market_board_seq.nextval,'우동마켓3','오늘은 목요일',SYSDATE,'java4');
 SELECT * FROM udon_market_board;
 COMMIT
-
 
 CREATE TABLE udon_comment(
 	comment_no NUMBER PRIMARY KEY,
@@ -73,6 +71,7 @@ CREATE TABLE udon_comment(
 )
 CREATE SEQUENCE udon_comment_seq;
 
+DROP SEQUENCE udon_comment_seq;
 DROP TABLE udon_comment;
 
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java');
