@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                 	<c:if test="${sessionScope.mvo!=null}">
-                      <a href="" class="nav-item nav-link text-primary">동네주민</a>
+                      <a href="market/member-info.jsp" class="nav-item nav-link text-primary">동네주민</a>
                       <a href="" class="nav-item nav-link text-secondary">상점주인</a>
                       <a href="WriteBoardFormController.do" class="nav-item nav-link">글쓰기</a>
                       <a class="nav-item nav-link">${sessionScope.mvo.name}님</a>
