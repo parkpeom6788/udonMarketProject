@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -29,4 +30,86 @@ public class MarketDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
+	public ArrayList<MarketVO> findMarketAllList() throws SQLException {
+		ArrayList<MarketVO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT market_name, info FROM udon_market";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MarketVO marketVO = new MarketVO();
+				marketVO.setMarketName(rs.getString(1));
+				marketVO.setInfo(rs.getString(2));
+				list.add(marketVO);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		
+		return list;
+	}
+	public ArrayList<MarketVO> findMarketListSortByItem(String item) throws SQLException {
+		ArrayList<MarketVO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT market_name, info FROM udon_market WHERE item=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, item);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MarketVO marketVO = new MarketVO();
+				marketVO.setMarketName(rs.getString(1));
+				marketVO.setInfo(rs.getString(2));
+				list.add(marketVO);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
