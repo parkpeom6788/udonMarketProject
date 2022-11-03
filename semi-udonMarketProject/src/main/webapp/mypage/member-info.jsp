@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-<div class="container pt-3">
-
-</div>
-</body>
-</html>
+<table class="table table-bordered">
+<tr>
+  <td>아이디</td><td>${sessionScope.mvo.id}</td>
+</tr>
+<tr>
+  <td>비밀번호</td><td>${sessionScope.mvo.password}</td>
+</tr>
+<tr>
+  <td>이름</td><td>${sessionScope.mvo.name}</td>
+</tr>
+<tr>
+  <td>주민등록번호</td><td>${sessionScope.mvo.memberNo}</td>
+</tr>
+<tr>
+  <td>주소</td><td>${sessionScope.mvo.address}</td>
+</tr>
+<tr>
+  <td>연락처</td><td>${sessionScope.mvo.tel}</td>
+</tr>
+</table>
+<form action="" method="post">
+  <button type="submit" class="btn-lg">수정</button>
+</form>
+&nbsp;&nbsp;<a href="">회원탈퇴</a>
