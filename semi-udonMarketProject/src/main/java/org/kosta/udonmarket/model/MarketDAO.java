@@ -74,6 +74,28 @@ public class MarketDAO {
 		}
 		return list;
 	}
+	public ArrayList<MarketVO> findMarketListByName(String searchInfo) throws SQLException {
+		ArrayList<MarketVO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT market_name, info FROM udon_market WHERE market_name LIKE '%'||"+"?"+"||'%'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, searchInfo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MarketVO marketVO = new MarketVO();
+				marketVO.setMarketName(rs.getString(1));
+				marketVO.setInfo(rs.getString(2));
+				list.add(marketVO);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
 }
 
 
