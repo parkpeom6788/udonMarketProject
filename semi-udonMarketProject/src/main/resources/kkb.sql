@@ -23,4 +23,8 @@ SELECT count(*) from udon_member where id='java';
 
 Select count(*) from udon_market where market_no=?;
 
+Select * from UDON_MARKET;
+
+
+
 
