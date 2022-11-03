@@ -14,7 +14,10 @@
 </head>
 <body>
 <div class="container pt-3">
-
+	<script type="text/javascript">
+      alert("로그인에 실패했습니다.\n아이디와 패스워드를 확인하세요");
+      location.href="${pageContext.request.contextPath}/LoginFormController.do";
+  	</script>
 </div>
 </body>
 </html>

@@ -29,4 +29,25 @@ public class MarketDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
+	
+	public void registerMarket(MarketVO marketVO) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		MemberVO memberVO=new MemberVO();
+		try {
+			con=dataSource.getConnection();
+			String sql="INSERT INTO udon_market(id,market_name,market_address,market_tel,item,info,market_no) VALUES(?,?,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, marketVO.getId());
+			pstmt.setString(2, marketVO.getMarketName());
+			pstmt.setString(3, marketVO.getMarketAddress());
+			pstmt.setString(4, marketVO.getMarketTel());
+			pstmt.setString(5, marketVO.getInfo());
+			pstmt.setString(6, marketVO.getItem());
+			pstmt.setString(7, marketVO.getMarketNo());
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
