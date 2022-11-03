@@ -12,13 +12,13 @@
                             <div class="row justify-content-start">
                                 <div class="col-lg-7">
                                     <h1 class="display-2 mb-5 animated slideInDown">Hello 우동마켓</h1>
-                                    <form action="" method="get">
-                                    	<input class="input-search" name="marketName" placeholder="상점이름을 검색하세요">
-                                		<button type="button"><small class="fa fa-search text-body"></small></button>
+                                    <form action="FindMarketByNameController.do" method="get">
+                                    	<input class="input-search" name="searchInfo" placeholder="상점이름을 검색하세요">
+                                		<button type="submit"><small class="fa fa-search text-body"></small></button>
                                     </form><br>
-                                    <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">과일</a>
-                                    <a href="" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">채소</a>
-                                    <a href="" class="btn btn-info rounded-pill py-sm-3 px-sm-5 ms-3">수산물</a>
+                                    <a href="FindMarketListSortByItemController.do?item=과일" class="btn btn-primary rounded-pill py-sm-3 px-sm-5">과일</a>
+                                    <a href="FindMarketListSortByItemController.do?item=채소" class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3">채소</a>
+                                    <a href="FindMarketListSortByItemController.do?item=수산물" class="btn btn-info rounded-pill py-sm-3 px-sm-5 ms-3">수산물</a>
                                 </div>
                             </div>
                         </div>
