@@ -11,28 +11,50 @@ import javax.sql.DataSource;
 public class MarketBoardDAO {
 	private static MarketBoardDAO instance = new MarketBoardDAO();
 	private DataSource dataSource;
-
 	private MarketBoardDAO() {
 		this.dataSource = DataSourceManager.getInstance().getDataSource();
 	}
-
 	public static MarketBoardDAO getInstance() {
 		return instance;
 	}
-
 	public void closeAll(PreparedStatement pstmt, Connection con) throws SQLException {
 		if (pstmt != null)
 			pstmt.close();
 		if (con != null)
 			con.close();
 	}
-
 	public void closeAll(ResultSet rs, PreparedStatement pstmt, Connection con) throws SQLException {
 		if (rs != null)
 			rs.close();
 		closeAll(pstmt, con);
 	}
-
+	
+	// 게시글 수정 - 찾기 조회 findMarketBoardByBoardNo(no);
+	public MarketBoardVO findMarketBoardByBoardNo(long no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MarketBoardVO marketBoardVO = null;
+		
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder();
+			sb.append(" select b.board_no , b.title , b.content , to_char(b.time_posted,'yyyy.MM.DD HH24.MI:SS') as time_posted  , b.hits , m.id ");
+			sb.append(" from udon_market_board b , udon_market m  ");
+			sb.append(" where b.id = m.id and b.board_no = ? ");
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setLong(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				MarketVO marketVO = new MarketVO();
+				marketVO.setId(rs.getString("id"));
+				marketBoardVO= new MarketBoardVO(rs.getLong("board_no"),rs.getString("title"),rs.getString("content"),rs.getString("time_posted"),rs.getLong("hits") , marketVO);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return marketBoardVO;
+	}
 	// 글쓰기 페이지
 	public void posting(String title, String content, String id) throws SQLException {
 		Connection con = null;
@@ -49,7 +71,6 @@ public class MarketBoardDAO {
 			closeAll(pstmt, con);
 		}
 	}
-	
 	// 조회수
 	public void hit(long no) throws SQLException {
 		Connection con = null;
@@ -64,7 +85,6 @@ public class MarketBoardDAO {
 			closeAll(pstmt, con);
 		}
 	}
-	
 	// 글 상세 페이지
 	public MarketBoardVO boardDetail(long no) throws SQLException {
 		MarketBoardVO marketBoardVO = null;
@@ -81,7 +101,6 @@ public class MarketBoardDAO {
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setLong(1, no);
 			rs = pstmt.executeQuery();
-			
 			if (rs.next()) {
 				MarketVO marketVO = new MarketVO();
 				marketVO.setId("java4");
@@ -93,7 +112,7 @@ public class MarketBoardDAO {
 		}
 		return marketBoardVO;
 	}
-	
+	// 게시물 리스트 출력
 	public ArrayList<MarketBoardVO> findBoardList(String id) throws SQLException {
 		ArrayList<MarketBoardVO> list = new ArrayList<>();
 		Connection con = null;
@@ -116,16 +135,42 @@ public class MarketBoardDAO {
 				marketBoardVO.setTitle(rs.getString("title"));
 				marketBoardVO.setTimePosted(rs.getString("time_posted"));
 				marketBoardVO.setHits(rs.getLong("hits"));
-				
 				list.add(marketBoardVO);
 			}
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
-		
 		return list;
 	}
-
+	// 게시글 삭제
+	public void deleteMarket(Long marketNo ) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String query = "delete from udon_market_board where board_no = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(query);
+			pstmt.setLong(1, marketNo);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	// 게시글 수정
+	public MarketVO updateMarket(Long marketNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String query = "update udon_market_board set title = ? and content where board_no = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(query);
+			pstmt.setLong(1, marketNo);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt,con);
+		}
+		return null;
+	}
 }
 
 

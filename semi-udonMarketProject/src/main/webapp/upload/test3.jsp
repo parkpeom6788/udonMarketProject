@@ -9,8 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 
-<%
+<body>
+ <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 	//위치, 경로, 사이즈 파일을 보낼때 알아두어야함 Context가 나오면 글로벌 모든 폴더와 파일에서 사용가능
@@ -35,17 +37,22 @@
 		MultipartRequest mr =
 			new MultipartRequest(request,path,maxFileSize,encType,
 					new DefaultFileRenamePolicy()); //파일 업로드. 파일은 리퀘스트에 담겨서옴./경로/맥스사이즈
-		//DB에 저장하기위해 파일 정보 추출
-		out.print("제목: " + mr.getParameter("subject")+"<br/>"); //파일의 정보는 위의 mr에 들어가있다.
+	
+		String filename = mr.getOriginalFileName("upload");			
+		/* out.print("제목: " + mr.getParameter("subject")+"<br/>"); //파일의 정보는 위의 mr에 들어가있다.
 		out.print("서버에 저장된 파일 이름: " + 
 			mr.getFilesystemName("upload") + "<br/>");
 		out.print("업로드한 파일명: " +
 			mr.getOriginalFileName("upload") + "<br/>");
-		out.print("파일 타입: " + mr.getContentType("upload") + "<br/>");
+		out.print("파일 타입: " + mr.getContentType("upload") + "<br/>"); 
+		out.print("파일 크키: " + file.length() + "<br/>"); 
+		*/
 		//파일 객체 생성
 		File file = mr.getFile("upload");
-		out.print("파일 크키: " + file.length() + "<br/>");
+				
 	}catch(Exception e){
 		
 	}
 %>
+	</body>
+</html>
