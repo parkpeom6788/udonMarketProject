@@ -32,7 +32,7 @@ public class WritePostController implements Controller {
 		String cp = request.getContextPath();
 		String root = request.getServletContext().getRealPath("/");
 		System.out.println(root);	
-		String path = root + "pds" + File.separator + "saveData";
+		String path = root  + "saveData";
 		System.out.println(path);	
 		
 		File f = new File(path);

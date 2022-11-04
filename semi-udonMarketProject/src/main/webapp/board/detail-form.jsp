@@ -12,6 +12,8 @@
 		<tbody style="center">
 		<tr>
 		<td colspan="4">
+			<c:if test="">
+			</c:if>
 			 <pre><font size="4">${requestScope.vo.content}</font></pre>
 		</td>
 	</tr>
