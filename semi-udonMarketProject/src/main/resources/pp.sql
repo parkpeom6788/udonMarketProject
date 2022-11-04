@@ -22,3 +22,8 @@ select *AWS_TEST
 select b.board_no , b.title , b.content , to_char(b.time_posted,'yyyy.MM.DD HH24.MI:SS') as time_posted , b.content 
 from udon_market_board b , udon_market m 
 where b.id = m.id;
+
+update udon_market_board set title = '수정됐나' , content = '수정됏나' where board_no = 2;
+
+select * from udon_market_board where board_no = 2; 
+

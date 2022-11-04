@@ -5,13 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<html>
 
-<body>
  <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -24,7 +18,9 @@
 	//String path = "c:\\pds\\saveData"; 위 대신 이렇게 적어도 된다.
 	//저장 공간이 될 폴더가 없으면 폴더 생성
 	System.out.println(path);	
+	
 	File f = new File(path);
+	
 	if(!f.exists()){ //f 의 경로가 존재하지 않으면
 		f.mkdirs(); //경로의 파일을 만들어라
 	}
@@ -37,7 +33,6 @@
 		MultipartRequest mr =
 			new MultipartRequest(request,path,maxFileSize,encType,
 					new DefaultFileRenamePolicy()); //파일 업로드. 파일은 리퀘스트에 담겨서옴./경로/맥스사이즈
-	
 		String filename = mr.getOriginalFileName("upload");			
 		/* out.print("제목: " + mr.getParameter("subject")+"<br/>"); //파일의 정보는 위의 mr에 들어가있다.
 		out.print("서버에 저장된 파일 이름: " + 
@@ -49,10 +44,11 @@
 		*/
 		//파일 객체 생성
 		File file = mr.getFile("upload");
-				
 	}catch(Exception e){
 		
 	}
 %>
-	</body>
-</html>
+<script>
+	alert("첨부완료")
+</script>
+

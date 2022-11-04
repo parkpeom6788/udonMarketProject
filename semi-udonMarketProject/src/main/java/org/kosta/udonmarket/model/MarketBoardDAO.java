@@ -157,19 +157,20 @@ public class MarketBoardDAO {
 		}
 	}
 	// 게시글 수정
-	public MarketVO updateMarket(Long marketNo) throws SQLException {
+	public void updateMarket(String title,String content,long board_no) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String query = "update udon_market_board set title = ? and content where board_no = ?";
+		String query = " update udon_market_board set title = ? , content = ? where board_no = ? ";
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(query);
-			pstmt.setLong(1, marketNo);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content );
+			pstmt.setLong(3, board_no);
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt,con);
 		}
-		return null;
 	}
 }
 

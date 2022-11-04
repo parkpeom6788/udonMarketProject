@@ -22,15 +22,9 @@ public class WritePostController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
 		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		
 		MemberVO memberVO = (MemberVO)session.getAttribute("mvo");
 		String id = memberVO.getId();
 	
-		if(session != null || memberVO != null) {
-			MarketBoardDAO.getInstance().posting(title, content, id);
-		}
 		MarketVO marketVO = MarketDAO.getInstance().findMarketInfo(id);
 		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id);
 		
@@ -56,8 +50,18 @@ public class WritePostController implements Controller {
 				mr.getOriginalFileName("upload");
 			File file = mr.getFile("upload");
 		
-		}catch(Exception e){
+			String fileName = mr.getOriginalFileName("upload");
+			System.out.println(fileName);
+			request.setAttribute("fileName", fileName);
 			
+			String title= mr.getParameter("title");
+			String content = mr.getParameter("content");
+			
+			if(session != null || memberVO != null) {
+				MarketBoardDAO.getInstance().posting(title, content, id);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("marketVO", marketVO);
