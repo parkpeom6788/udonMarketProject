@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
-
 <table class="table">
 		<tr>
 			<td>글번호 ${requestScope.vo.boardNo}</td>
@@ -9,14 +8,19 @@
 			<td>조회수 ${requestScope.vo.hits}</td>
 			<td>${requestScope.vo.timePosted}</td>
 		</tr>
-		<tbody style="center">
+		<tbody>
 		<tr>
 		<td colspan="4">
-			<c:if test="">
-			</c:if>
-			 <pre><font size="4">${requestScope.vo.content}</font></pre>
+			 <pre>
+				<%-- <c:if test="${requestScope.filename1 != null}"> --%>
+			 		<font size="4">${requestScope.vo.content}</font>
+			 	<%-- </c:if> --%>
+			 	<%-- <c:otherwise> --%>
+			 		<%-- <font size="4">${requestScope.vo.content}</font> --%>
+			 	<%-- </c:otherwise> --%>	
+			 </pre>
 		</td>
-	</tr>
+		</tr>
 	</tbody>
 </table>
 </div>
