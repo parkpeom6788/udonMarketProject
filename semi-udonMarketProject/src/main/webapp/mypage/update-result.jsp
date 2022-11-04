@@ -3,5 +3,5 @@
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 alert("수정완료 했습니다");
-location.href="${pageContext.request.contextPath}/index.jsp";
+location.href="${pageContext.request.contextPath}/MypageFormController.do";
 </script>
