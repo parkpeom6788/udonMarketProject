@@ -57,9 +57,11 @@ public class Pagination {
 		int nowPageGroup = this.nowPage / this.pageCountPerPageGroup;
 		if(this.nowPage % this.pageCountPerPageGroup!=0)
 			nowPageGroup += 1;
-		return 0;
+		return nowPageGroup;
 	}
+	
 	// getStartPageOfPageGroup() - 해당 페이지 그룹 내 첫번째 페이지 번호
+	
 	// getEndPageOfPageGroup() - 해당 페이지 그룹 내 마지막 페이지 번호
 	// isPreviousPageGroup() - previous 존재하는지 true/false
 	// isNextPageGroup() - next 존재하는지 true/false
