@@ -39,7 +39,7 @@ public class MarketBoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sb = new StringBuilder();
-			sb.append(" select b.board_no , b.title , b.content , to_char(b.time_posted,'yyyy.MM.DD HH24.MI:SS') as time_posted  , b.hits , m.id ");
+			sb.append(" select b.board_no , b.title , b.content,b.image_name, to_char(b.time_posted,'yyyy.MM.DD HH24.MI:SS') as time_posted  , b.hits , m.id ");
 			sb.append(" from udon_market_board b , udon_market m  ");
 			sb.append(" where b.id = m.id and b.board_no = ? ");
 			pstmt = con.prepareStatement(sb.toString());
@@ -48,7 +48,7 @@ public class MarketBoardDAO {
 			if(rs.next()) {
 				MarketVO marketVO = new MarketVO();
 				marketVO.setId(rs.getString("id"));
-				marketBoardVO= new MarketBoardVO(rs.getLong("board_no"),rs.getString("title"),rs.getString("content"),rs.getString("time_posted"),rs.getLong("hits") , marketVO);
+				marketBoardVO= new MarketBoardVO(rs.getLong("board_no"),rs.getString("title"),rs.getString("content"),rs.getString("image_name"),rs.getString("time_posted"),rs.getLong("hits") , marketVO);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -56,16 +56,17 @@ public class MarketBoardDAO {
 		return marketBoardVO;
 	}
 	// 글쓰기 페이지
-	public void posting(String title, String content, String id) throws SQLException {
+	public void posting(String title, String content, String imageName, String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "insert into udon_market_board(board_no,title,content,time_posted,id) values(undon_market_board_seq.nextval,?,?,SYSDATE,?)";
+			String query = "insert into udon_market_board(board_no,title,content,image_name,time_posted,id) values(undon_market_board_seq.nextval,?,?,?,SYSDATE,?)";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setString(3, id);
+			pstmt.setString(3, imageName);
+			pstmt.setString(4, id);
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);
@@ -95,7 +96,7 @@ public class MarketBoardDAO {
 			con = this.dataSource.getConnection();
 			StringBuilder sb = new StringBuilder();
 			sb.append(
-					"select b.board_no,b.title,b.content,to_char(b.time_posted,'YYYY.MM.DD HH24.MI.SS') as time_posted , b.hits , m.id  ");
+					"select b.board_no,b.title,b.content,b.image_name,to_char(b.time_posted,'YYYY.MM.DD HH24.MI.SS') as time_posted , b.hits , m.id  ");
 			sb.append(" from  udon_market_board b inner join  udon_market m on  b.id = m.id  where  ");
 			sb.append(" b.board_no = ? ");
 			pstmt = con.prepareStatement(sb.toString());
@@ -105,7 +106,7 @@ public class MarketBoardDAO {
 				MarketVO marketVO = new MarketVO();
 				marketVO.setId("java4");
 				marketBoardVO = new MarketBoardVO(rs.getLong("board_no"), rs.getString("title"),
-						rs.getString("content"), rs.getString("time_posted"), rs.getLong("hits"), marketVO);
+						rs.getString("content"),rs.getString("image_name") ,rs.getString("time_posted"), rs.getLong("hits"), marketVO);
 			  }
 		} finally {
 			closeAll(rs, pstmt, con);

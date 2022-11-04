@@ -15,12 +15,13 @@
                 	<c:if test="${sessionScope.mvo!=null}">
                 	  <c:choose>
                 	    <c:when test="${sessionScope.mvo.memberType==1}">
-                          <a href="MypageFormController.do" class="nav-item nav-link text-secondary">상점주인</a>
+                          <a href="FindBoardListController.do?id=${sessionScope.mvo.id }" class="nav-item nav-link text-secondary">상점주인</a>
+                	      <a href="MypageFormController.do" class="nav-item nav-link text-primary">마이페이지</a>
                     	  <a href="WriteBoardFormController.do" class="nav-item nav-link">글쓰기</a>
                         </c:when>
                         <c:otherwise>
                           <a href="MypageFormController.do" class="nav-item nav-link text-primary">동네주민</a>
-                          <a href="" class="nav-item nav-link">상점등록</a>
+                          <a href="RegisterMarketFormController.do" class="nav-item nav-link">상점등록</a>
                         </c:otherwise>
                       </c:choose>
                       <a class="nav-item nav-link">${sessionScope.mvo.name}님</a>

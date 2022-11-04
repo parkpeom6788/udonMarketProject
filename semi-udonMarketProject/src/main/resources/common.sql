@@ -50,6 +50,9 @@ CREATE TABLE udon_market_board(
 	CONSTRAINT undon_market_board_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
 )
 CREATE SEQUENCE undon_market_board_seq;
+
+ALTER TABLE udon_market_board ADD image_name VARCHAR2(100) DEFAULT NULL;
+
 DROP SEQUENCE undon_market_board_seq;
 DROP TABLE udon_market_board;
 

@@ -4,6 +4,7 @@ public class MarketBoardVO {
 	private long boardNo;
 	private String title;
 	private String content;
+	private String imageName;
 	private String timePosted;
 	private long hits;
 	private MarketVO marketVO;
@@ -13,15 +14,17 @@ public class MarketBoardVO {
 	}
 	
 	// 상세글보기
-	public MarketBoardVO(long boardNo, String title, String content, String timePosted, long hits, MarketVO marketVO) {
+	public MarketBoardVO(long boardNo, String title, String content, String imageName, String timePosted, long hits, MarketVO marketVO) {
 		super();
 		this.boardNo = boardNo;
 		this.title = title;
 		this.content = content;
+		this.imageName = imageName;
 		this.timePosted = timePosted;
 		this.hits = hits;
 		this.marketVO = marketVO;
 	}
+	
 	// 게시글전체리스트
 	public MarketBoardVO(long boardNo, String title, String timePosted, long hits, MarketVO marketVO) {
 		super();
@@ -33,10 +36,11 @@ public class MarketBoardVO {
 	}
 	
 	//게시글 작성하기
-	public MarketBoardVO(String title, String content, MarketVO marketVO) {
+	public MarketBoardVO(String title, String content, String imageName, MarketVO marketVO) {
 		super();
 		this.title = title;
 		this.content = content;
+		this.imageName = imageName;
 		this.marketVO = marketVO;
 	}
 
@@ -62,6 +66,14 @@ public class MarketBoardVO {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 	public String getTimePosted() {
@@ -90,8 +102,8 @@ public class MarketBoardVO {
 
 	@Override
 	public String toString() {
-		return "MarketBoardVO [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", timePosted="
-				+ timePosted + ", hits=" + hits + ", marketVO=" + marketVO + "]";
+		return "MarketBoardVO [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", imageName="
+				+ imageName + ", timePosted=" + timePosted + ", hits=" + hits + ", marketVO=" + marketVO + "]";
 	}
 	
 }

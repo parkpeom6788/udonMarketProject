@@ -90,7 +90,7 @@ public class WritePostController implements Controller {
 			request.setAttribute("filename1", filename1);
 			
 			if(session != null || memberVO != null) {
-				MarketBoardDAO.getInstance().posting(title, content, id);
+				MarketBoardDAO.getInstance().posting(title, content, filename1, id);
 			}
 		} catch(Exception e){
 			e.printStackTrace();
