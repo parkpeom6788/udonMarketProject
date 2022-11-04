@@ -23,10 +23,14 @@ public class RegisterMarketController implements Controller {
 		String info=request.getParameter("info");
 		String item=request.getParameter("item");
 		String marketNo=request.getParameter("marketNo");
-		MarketDAO.getInstance().registerMarket(new MarketVO(id, marketName, marketAddress, marketTel, info, item, marketNo));
+		MarketVO marketVO = new MarketVO(id, marketName, marketAddress, marketTel, info, item, marketNo);
+		
+		MarketDAO.getInstance().registerMarket(marketVO);
 		MemberDAO.getInstance().updateMemberType(id);
-		if(session!=null)
-			session.invalidate();
+		MemberVO newVo = MemberDAO.getInstance().findMemberById(id);
+		
+		session.setAttribute("mvo", newVo);
+		
 		request.setAttribute("url", "market/register-market-result.jsp");
 		return "layout.jsp";
 	}

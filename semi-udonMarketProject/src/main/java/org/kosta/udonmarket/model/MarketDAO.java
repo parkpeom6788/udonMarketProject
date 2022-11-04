@@ -191,6 +191,19 @@ public class MarketDAO {
 		}
 	
 	}
+	public void deleteMarketByNo(String marketNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql =("	delete from UDON_MARKET where market_no=? ");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, marketNo);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 	
 }
 

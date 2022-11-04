@@ -29,8 +29,9 @@ Select * from UDON_MARKET;
 	Update UDON_MARKET set market_name = '1', market_tel ='010-0000-0000', info = 'ㅎㅎㅎ'
 	where id = 'java';
 
+delete from UDON_MARKET where market_no=?
 
-
+update udon_member set member_type = member_type - 1 where id = 'java3';
 
 
 
