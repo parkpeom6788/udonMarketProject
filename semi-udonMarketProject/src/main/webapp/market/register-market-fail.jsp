@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 결과</title>
+<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
 <body>
 <div class="container pt-3">
 <script type="text/javascript">
-alert("회원가입 축하드립니다");
+alert("이미 상점 등록이 완료했습니다");
 location.href="${pageContext.request.contextPath}/index.jsp";
 </script>
 </div>
