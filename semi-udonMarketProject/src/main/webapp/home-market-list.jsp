@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	 <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-	     <h1 class="display-5 mb-3">All Market</h1>
+	     <h1 class="display-5 mb-3">${requestScope.title }</h1>
 	 </div>
 	 <div class="row g-4">
 	 	<c:forEach items="${requestScope.marketList }" var="list">

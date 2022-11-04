@@ -13,6 +13,7 @@ public class FindMarketAllListController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ArrayList<MarketVO> list = MarketDAO.getInstance().findMarketAllList();
+		request.setAttribute("title", "All Market");
 		request.setAttribute("marketList", list);
 		request.setAttribute("url", "home-market-list.jsp");
 		return "home.jsp";
