@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <table class="table table-bordered" style="border-width: 10px">
 <tr>
-  <td>아이디</td><td>${sessionScope.mvo.name}</td>
+  <td>아이디</td><td>${sessionScope.mvo.id}</td>
 </tr>
 <tr>
   <td>이름</td><td>${sessionScope.mvo.name}</td>

@@ -61,8 +61,44 @@ public class Pagination {
 	}
 	
 	// getStartPageOfPageGroup() - 해당 페이지 그룹 내 첫번째 페이지 번호
+	public int getStartPageOfPageGroup() {
+		return (getNowPageGroup()-1)*this.pageCountPerPageGroup+1;
+	}
 	
 	// getEndPageOfPageGroup() - 해당 페이지 그룹 내 마지막 페이지 번호
+	public int getEndPageOfPageGroup() {
+		int endPageOfPageGroup = getNowPageGroup();
+		return 0;
+	}
+	
 	// isPreviousPageGroup() - previous 존재하는지 true/false
+	public boolean isPreviousPageGroup() {
+		return false;
+	}
+	
 	// isNextPageGroup() - next 존재하는지 true/false
+	public boolean isNextPageGroup() {
+		return false;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

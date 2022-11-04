@@ -12,12 +12,11 @@ public class TestPagination2 {
 		System.out.println("totalPage:"+p.getTotalPage());	// 10		
 		System.out.println("totalPageGroup:"+p.getTotalPageGroup());	// 3
 		System.out.println("nowPageGroup:"+p.getNowPageGroup()); // 3
-		/*
 		System.out.println("startPageOfPageGroup:"+p.getStartPageOfPageGroup()); // 9
 		System.out.println("endPageOfPageGroup:"+p.getEndPageOfPageGroup()); //10
 		System.out.println("isPreviousPageGroup:"+p.isPreviousPageGroup()); // true
 		System.out.println("isNextPageGroup:"+p.isNextPageGroup()); // false
-		p=new PaginationDemo(22,3);
+		p=new Pagination(22,3);
 		System.out.println("startRowNumber:"+p.getStartRowNumber());	// 11
 		System.out.println("endRowNumber:"+p.getEndRowNumber());	// 15
 		System.out.println("totalPage:"+p.getTotalPage());	// 5		
@@ -27,6 +26,5 @@ public class TestPagination2 {
 		System.out.println("endPageOfPageGroup:"+p.getEndPageOfPageGroup()); //4
 		System.out.println("isPreviousPageGroup:"+p.isPreviousPageGroup()); // false
 		System.out.println("isNextPageGroup:"+p.isNextPageGroup()); //true
-		*/
 	}
 }

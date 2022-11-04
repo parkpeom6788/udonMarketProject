@@ -14,14 +14,15 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                 	<c:if test="${sessionScope.mvo!=null}">
                 	  <c:choose>
-                	    <c:when test="${sessionScope.mvo.memberType==0}">
-                          <a href="MypageFormController.do" class="nav-item nav-link text-primary">동네주민</a>
+                	    <c:when test="${sessionScope.mvo.memberType==1}">
+                          <a href="MypageFormController.do" class="nav-item nav-link text-secondary">상점주인</a>
+                    	  <a href="WriteBoardFormController.do" class="nav-item nav-link">글쓰기</a>
                         </c:when>
                         <c:otherwise>
-                          <a href="MypageFormController.do" class="nav-item nav-link text-secondary">상점주인</a>
+                          <a href="MypageFormController.do" class="nav-item nav-link text-primary">동네주민</a>
+                          <a href="" class="nav-item nav-link">상점등록</a>
                         </c:otherwise>
                       </c:choose>
-                      <a href="WriteBoardFormController.do" class="nav-item nav-link">글쓰기</a>
                       <a class="nav-item nav-link">${sessionScope.mvo.name}님</a>
                       <a href="javascript:logout()" class="nav-item nav-link">로그아웃</a>
                       <form id="logoutForm" action="LogoutController.do" method="post"></form>
