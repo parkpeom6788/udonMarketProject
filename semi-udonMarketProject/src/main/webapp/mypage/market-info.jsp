@@ -27,7 +27,10 @@
   <button type="submit" class="btn-lg">수정</button>
 </form>
 
-<a href="" style="float: right;"><font size="5px">상점삭제</font></a>
+<a href="DeleteMarketController.do?no=${requestScope.marketVO.marketNo}" style="float: right;">
+<input type="hidden" name="marketNo" value="${requestScope.marketVO.marketNo}">
+<font size="5px">상점삭제</font></a>
+
 </div>
 
 

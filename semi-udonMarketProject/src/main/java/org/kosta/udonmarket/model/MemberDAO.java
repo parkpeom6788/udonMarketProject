@@ -93,7 +93,7 @@ public class MemberDAO {
 		}
 		return memberVO;
 	}
-	public boolean updateMemberType(String id) throws SQLException {
+	public void updateMemberType(String id) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -106,7 +106,6 @@ public class MemberDAO {
 		}finally {
 			closeAll(pstmt, con);
 		}
-		return false;
 		
 	}
 	
@@ -145,6 +144,21 @@ public class MemberDAO {
 		} finally {
 			closeAll(pstmt, con);
 		}
+	}
+	public void updateMemberTypeMinus(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "update udon_member set member_type = member_type - 1 where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+		
 	}
 }
 
