@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<table class="table table-bordered">
+<table class="table table-bordered" style="border-width: 10px">
 <tr>
-  <td>아이디</td><td>${sessionScope.mvo.id}</td>
-</tr>
-<tr>
-  <td>비밀번호</td><td>${sessionScope.mvo.password}</td>
+  <td>아이디</td><td>${sessionScope.mvo.name}</td>
 </tr>
 <tr>
   <td>이름</td><td>${sessionScope.mvo.name}</td>
@@ -21,7 +18,17 @@
   <td>연락처</td><td>${sessionScope.mvo.tel}</td>
 </tr>
 </table>
-<form action="" method="post">
-  <button type="submit" class="btn-lg">수정</button>
+<div align="center">
+<button type="submit" class="btn-lg" onclick="updateMember()">수정</button>
+<a href="" style="float: right;"><font size="5px">회원탈퇴</font></a>
+</div>
+<form id="updateMemberForm" action="UpdateMemberInfoFormController.do" method="post">
+  <input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
 </form>
-&nbsp;&nbsp;<a href="">회원탈퇴</a>
+<script>
+  function updateMember() {
+	if(confirm("회원정보를 수정하시겠습니까?")){
+		document.getElementById("updateMemberForm").submit();
+	}
+}
+</script>
