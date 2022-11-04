@@ -7,9 +7,11 @@ public class MarketBoardVO {
 	private String timePosted;
 	private long hits;
 	private MarketVO marketVO;
+	
 	public MarketBoardVO() {
 		super();
 	}
+	
 	// 상세글보기
 	public MarketBoardVO(long boardNo, String title, String content, String timePosted, long hits, MarketVO marketVO) {
 		super();
