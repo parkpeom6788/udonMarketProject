@@ -21,7 +21,6 @@
   </table>
   <div class="text-center">
     <button type="submit" class="btn-lg">확인</button>
-    <button type="reset" class="btn-lg">취소</button>
   </div>
 </form>
 <script type ="text/javascript">
