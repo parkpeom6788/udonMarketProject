@@ -17,6 +17,35 @@ ORDER BY b.board_no DESC;
 -- findMarketInfo() 상점게시판에서 상점 소개글 조회
 SELECT market_name, market_address, market_tel, item, info, market_no FROM udon_market WHERE id='java';
 
+-- pagination
+	-- step 1
+	SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC), board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted
+	FROM udon_market_board
+	WHERE id='java4';
+	-- step2
+	SELECT board_no, title, time_posted
+	FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted
+		FROM udon_market_board
+		WHERE id='java4'
+	)
+	WHERE rnum BETWEEN 1 AND 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
