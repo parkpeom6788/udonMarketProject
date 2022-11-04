@@ -25,7 +25,7 @@
 <form id="updateMemberForm" action="UpdateMemberInfoFormController.do" method="post">
   <input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
 </form>
-<form id="deleteMemberForm" action="DeleteMemberController.do" method="post">
+<form id="deleteMemberForm" action="DeleteMemberFormController.do" method="post">
   <input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
 </form>
 <script>

@@ -146,14 +146,16 @@ public class MemberDAO {
 		}
 	}
 
-	public void deleteMember(String id) throws SQLException {
+	public void deleteMember(String id,String password) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="DELETE FROM udon_member WHERE id=?";
+			String sql="DELETE FROM udon_member WHERE id=? AND password=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);
