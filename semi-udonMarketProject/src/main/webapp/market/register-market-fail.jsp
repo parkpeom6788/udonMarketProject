@@ -20,7 +20,7 @@
 <div class="container pt-3">
 <script type="text/javascript">
 alert("이미 상점 등록이 완료했습니다");
-location.href="${pageContext.request.contextPath}/home.jsp";
+location.href="${pageContext.request.contextPath}/index.jsp";
 </script>
 </div>
 </body>

@@ -20,7 +20,7 @@
 <div class="container pt-3">
 <script type="text/javascript">
 alert("회원가입 축하드립니다");
-location.href="${pageContext.request.contextPath}/home.jsp";
+location.href="${pageContext.request.contextPath}/index.jsp";
 </script>
 </div>
 </body>
