@@ -172,5 +172,36 @@ public class MarketDAO {
 		}
 		return result;
 	}
+	public void updateMarket(String name, String tel, String info, String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("	Update UDON_MARKET set market_name = ? , market_tel =?, info = ? ");
+			sql.append("where id = ?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, name);
+			pstmt.setString(2, tel);
+			pstmt.setString(3, info);
+			pstmt.setString(4, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+

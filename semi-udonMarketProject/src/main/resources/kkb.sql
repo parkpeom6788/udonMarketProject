@@ -26,5 +26,16 @@ Select count(*) from udon_market where market_no=?;
 Select * from UDON_MARKET;
 
 
+	Update UDON_MARKET set market_name = '1', market_tel ='010-0000-0000', info = 'ㅎㅎㅎ'
+	where id = 'java';
+
+
+
+
+
+
+
+
+
 
 
