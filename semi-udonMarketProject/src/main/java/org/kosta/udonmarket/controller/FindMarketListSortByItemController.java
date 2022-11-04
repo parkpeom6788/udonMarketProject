@@ -14,6 +14,7 @@ public class FindMarketListSortByItemController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String item = request.getParameter("item");
 		ArrayList<MarketVO> list = MarketDAO.getInstance().findMarketListSortByItem(item);
+		request.setAttribute("title", item+" Market");
 		request.setAttribute("marketList", list);
 		request.setAttribute("url", "home-market-list.jsp");
 		return "home.jsp";
