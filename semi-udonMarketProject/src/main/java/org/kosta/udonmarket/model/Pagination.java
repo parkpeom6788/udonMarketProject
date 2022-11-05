@@ -30,10 +30,10 @@ public class Pagination {
 
 	// getEndRowNumber() - 해당 페이지에서 마지막 게시물의 로우번호
 	public int getEndRowNumber() {
-		int endRowNum = this.nowPage * this.postCountPerPage;
-		if (endRowNum > this.totalPostCount)
-			endRowNum = this.totalPostCount;
-		return endRowNum;
+		int endRowNumber = this.nowPage * this.postCountPerPage;
+		if (endRowNumber > this.totalPostCount)
+			endRowNumber = this.totalPostCount;
+		return endRowNumber;
 	}
 
 	// getTotalPageCount() - 총 페이지 수
@@ -55,58 +55,37 @@ public class Pagination {
 	// getNowPageGroup() - 현재 페이지에 해당하는 페이지 그룹
 	public int getNowPageGroup() {
 		int nowPageGroup = this.nowPage / this.pageCountPerPageGroup;
-		if(this.nowPage % this.pageCountPerPageGroup!=0)
+		if (this.nowPage % this.pageCountPerPageGroup != 0)
 			nowPageGroup += 1;
 		return nowPageGroup;
 	}
-	
+
 	// getStartPageOfPageGroup() - 해당 페이지 그룹 내 첫번째 페이지 번호
 	public int getStartPageOfPageGroup() {
-		return (getNowPageGroup()-1)*this.pageCountPerPageGroup+1;
+		return (this.getNowPageGroup() - 1) * this.pageCountPerPageGroup + 1;
 	}
-	
+
 	// getEndPageOfPageGroup() - 해당 페이지 그룹 내 마지막 페이지 번호
 	public int getEndPageOfPageGroup() {
 		int endPageOfPageGroup = getNowPageGroup() * this.pageCountPerPageGroup;
-		if(endPageOfPageGroup>this.getTotalPage())
+		if (endPageOfPageGroup > this.getTotalPage())
 			endPageOfPageGroup = this.getTotalPage();
 		return endPageOfPageGroup;
 	}
-	
+
 	// isPreviousPageGroup() - previous 존재하는지 true/false
 	public boolean isPreviousPageGroup() {
 		boolean flag = false;
-		if(this.getNowPageGroup()>1)
+		if (this.getNowPageGroup() > 1)
 			flag = true;
 		return flag;
 	}
-	
+
 	// isNextPageGroup() - next 존재하는지 true/false
 	public boolean isNextPageGroup() {
 		boolean flag = false;
-		if(this.getNowPageGroup()<this.getTotalPageGroup())
+		if (this.getNowPageGroup() < this.getTotalPageGroup())
 			flag = true;
 		return flag;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

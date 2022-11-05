@@ -114,7 +114,7 @@ public class MarketBoardDAO {
 		return marketBoardVO;
 	}
 	// 게시물 리스트 출력
-	public ArrayList<MarketBoardVO> findBoardList(String id) throws SQLException {
+	public ArrayList<MarketBoardVO> findBoardList(String id, Pagination pagination) throws SQLException {
 		ArrayList<MarketBoardVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -122,20 +122,23 @@ public class MarketBoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT b.board_no, b.title, TO_CHAR(b.time_posted,'YYYY/MM/DD') AS time_posted, b.hits, m.id, m.market_name, m.market_address, m.market_tel, m.info, m.item, m.market_no ");
-			sql.append("FROM udon_market_board b ");
-			sql.append("INNER JOIN udon_market m ON b.id = m.id ");
-			sql.append("WHERE b.id=? ");
-			sql.append("ORDER BY b.board_no DESC");
+			sql.append("SELECT board_no, title, time_posted ");
+			sql.append("FROM( ");
+			sql.append("SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted, id ");
+			sql.append("FROM udon_market_board ");
+			sql.append("WHERE id=? ");
+			sql.append(") ");
+			sql.append("WHERE rnum BETWEEN ? AND ?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
+			pstmt.setInt(2, pagination.getStartRowNumber());
+			pstmt.setInt(3, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MarketBoardVO marketBoardVO = new MarketBoardVO();
 				marketBoardVO.setBoardNo(rs.getLong("board_no"));
 				marketBoardVO.setTitle(rs.getString("title"));
 				marketBoardVO.setTimePosted(rs.getString("time_posted"));
-				marketBoardVO.setHits(rs.getLong("hits"));
 				list.add(marketBoardVO);
 			}
 		}finally {
@@ -172,6 +175,24 @@ public class MarketBoardDAO {
 		} finally {
 			closeAll(pstmt,con);
 		}
+	}
+	public int getTotalPostCount(String id) throws SQLException {
+		int totalPostCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT COUNT(*) FROM udon_market_board WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				totalPostCount = rs.getInt(1);
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return totalPostCount;
 	}
 }
 

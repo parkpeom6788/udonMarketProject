@@ -17,19 +17,23 @@ ORDER BY b.board_no DESC;
 -- findMarketInfo() 상점게시판에서 상점 소개글 조회
 SELECT market_name, market_address, market_tel, item, info, market_no FROM udon_market WHERE id='java';
 
--- pagination
+-- pagination ( findBoardList() 에 pagination 추가 )
 	-- step 1
 	SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC), board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted
 	FROM udon_market_board
 	WHERE id='java4';
 	-- step2
-	SELECT board_no, title, time_posted
+	SELECT b.board_no, b.title, b.time_posted
 	FROM(
-		SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted
+		SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted, id
 		FROM udon_market_board
 		WHERE id='java4'
-	)
+	) 
 	WHERE rnum BETWEEN 1 AND 5;
+
+-- totalPostCount() 페이징처리에 사용
+SELECT COUNT(*) FROM udon_market_board WHERE id='java4';
+
 
 
 
