@@ -67,18 +67,26 @@ public class Pagination {
 	
 	// getEndPageOfPageGroup() - 해당 페이지 그룹 내 마지막 페이지 번호
 	public int getEndPageOfPageGroup() {
-		int endPageOfPageGroup = getNowPageGroup();
-		return 0;
+		int endPageOfPageGroup = getNowPageGroup() * this.pageCountPerPageGroup;
+		if(endPageOfPageGroup>this.getTotalPage())
+			endPageOfPageGroup = this.getTotalPage();
+		return endPageOfPageGroup;
 	}
 	
 	// isPreviousPageGroup() - previous 존재하는지 true/false
 	public boolean isPreviousPageGroup() {
-		return false;
+		boolean flag = false;
+		if(this.getNowPageGroup()>1)
+			flag = true;
+		return flag;
 	}
 	
 	// isNextPageGroup() - next 존재하는지 true/false
 	public boolean isNextPageGroup() {
-		return false;
+		boolean flag = false;
+		if(this.getNowPageGroup()<this.getTotalPageGroup())
+			flag = true;
+		return flag;
 	}
 }
 
