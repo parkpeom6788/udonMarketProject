@@ -193,11 +193,29 @@ public class MemberDAO {
 				vo = new MemberVO(rs.getString(1),name,memberNo,tel);
 		}finally {
 			closeAll(rs, pstmt, con);	
-		}
-		
-		
+		}	
 		return vo;
-		
+	}
+	public MemberVO findPasswordbyNameNoTel(String id, String name, String memberNo, String tel) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO vo = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "Select password from UDON_MEMBER where id =? and name = ? and member_no = ? and tel = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, memberNo);
+			pstmt.setString(4, tel);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				vo = new MemberVO(id,rs.getString(1),name,memberNo,tel);
+		}finally {
+			closeAll(rs, pstmt, con);	
+		}	
+		return vo;
 	}
 	
 }
