@@ -50,3 +50,52 @@
 			}
 		}
 	</script>
+	
+	<br><p>상점 후기</p>
+	<table id="comment" class="table">
+		<c:forEach items="${requestScope.commentList }" var="list">
+			<tr>
+				<td>${list.id }<br>${list.commentContent }<br>${list.commentTimePosted }</td>
+			</tr>
+		</c:forEach>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						${sessionScope.mvo.id }<br>
+						<input id="contentForm" name="commentContent" style="width: 750px; height: 60px" placeholder="상점 후기를 남겨주세요 ( 최대 100자 입력 가능 )">
+						&nbsp;&nbsp;<button type="button" onclick="writeComment()" style="width: 60px">등록</button>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		function writeComment(){
+			let contentForm = document.getElementById("contentForm").value;
+			if(contentForm.length>100){
+				alert("상점 후기는 최대 100자 입력 가능합니다");
+				return;
+			}
+		}
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
