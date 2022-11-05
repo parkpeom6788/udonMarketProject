@@ -49,6 +49,15 @@
 				document.getElementById("updateForm").submit();
 			}
 		}
+		function writeComment(event){
+			let content = document.getElementById("content").value.trim();
+			if(content==""){
+				alert("상점 후기를 입력해주세요");
+				event.preventDefault();
+				return;
+			}
+			document.getElementById("content").submit();
+		}
 	</script>
 	
 	<br><p>상점 후기</p>
@@ -63,22 +72,18 @@
 				<table>
 					<tr>
 						${sessionScope.mvo.id }<br>
-						<input id="contentForm" name="commentContent" style="width: 750px; height: 60px" placeholder="상점 후기를 남겨주세요 ( 최대 100자 입력 가능 )">
-						&nbsp;&nbsp;<button type="button" onclick="writeComment()" style="width: 60px">등록</button>
+						<form id="contentForm" action="WriteCommentController.do" method="post" onsubmit="writeComment(event)">
+							<input id="content" name="commentContent" style="width: 750px; height: 60px" placeholder="상점 후기를 남겨주세요">
+							<input type="hidden" name="boardNo" value="${requestScope.vo.boardNo}">
+							<input type="hidden" name="id" value="${sessionScope.mvo.id}">
+							&nbsp;&nbsp;<button type="submit" style="width: 60px">등록</button>
+						</form>
 					</tr>
 				</table>
 			</td>
 		</tr>
 	</table>
-	<script type="text/javascript">
-		function writeComment(){
-			let contentForm = document.getElementById("contentForm").value;
-			if(contentForm.length>100){
-				alert("상점 후기는 최대 100자 입력 가능합니다");
-				return;
-			}
-		}
-	</script>
+
 	
 	
 	

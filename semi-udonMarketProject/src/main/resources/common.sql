@@ -81,6 +81,14 @@ INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java2');
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java3');
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java');
+
+DELETE FROM udon_comment WHERE board_no=1;
+
+-- udon_comment 테이블의 comment_content 의 타입을 VARCHAR2(100) 에서 CLOB으로 변경
+ALTER TABLE udon_comment ADD content CLOB;
+ALTER TABLE udon_comment DROP COLUMN comment_content;
+ALTER TABLE udon_comment RENAME COLUMN content TO comment_content;
+
 SELECT * FROM udon_comment;
 COMMIT
 

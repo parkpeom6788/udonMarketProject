@@ -42,11 +42,23 @@ WHERE board_no = 1;
 -- 장문의 댓글이 어떻게 보이는 지 확인
 	--INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 꼭 드셔보세요~',SYSDATE,1,'java');
 		-- ORA-12899: value too large for column "SCOTT"."UDON_COMMENT"."COMMENT_CONTENT" (actual: 107, maximum: 100)
+		-- 데이터 타입을 VARCHAR2(100) 에서 CLOB 으로 변경함 -> INSERT 성공함
+		INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 꼭 드셔보세요~',SYSDATE,1,'java');
+	
 	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요.',SYSDATE,1,'java');
+	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야',SYSDATE,1,'java');
+	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야.',SYSDATE,1,'java');
+	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야. 아',SYSDATE,1,'java');
+	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야. 아아',SYSDATE,1,'java');
+	-- INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야. 아아아',SYSDATE,1,'java');
+		-- ORA-12899: value too large for column "SCOTT"."UDON_COMMENT"."COMMENT_CONTENT" (actual: 103, maximum: 100)
 SELECT * FROM udon_comment;
 COMMIT
 
-
+-- writeComment() 댓글작성하기
+INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'댓글등록이 되나요?',SYSDATE,1,'java');
+SELECT * FROM udon_comment;
+COMMIT
 
 
 

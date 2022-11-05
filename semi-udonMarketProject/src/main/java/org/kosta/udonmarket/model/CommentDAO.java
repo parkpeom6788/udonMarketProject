@@ -58,6 +58,22 @@ public class CommentDAO {
 		}
 		return list;
 	}
+	
+	public void writeComment(String content, long boardNo, String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,?,SYSDATE,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setLong(2, boardNo);
+			pstmt.setString(3, id);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
 
 
