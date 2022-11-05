@@ -9,14 +9,15 @@ public class WriteCommentController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		long boardNo = Long.parseLong(request.getParameter("boardNo"));
+		String no = request.getParameter("boardNo");
+		long boardNo = Long.parseLong(no);
 		String id = request.getParameter("id");
 		String ccontent = request.getParameter("commentContent");
 		
 		CommentDAO.getInstance().writeComment(ccontent, boardNo, id);
-		request.setAttribute("board_no", boardNo);
+		request.setAttribute("board_no", no);
 		
-		return "redirect:BoardDetailController.do";
+		return "";
 	}
 
 }

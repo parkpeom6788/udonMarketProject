@@ -76,7 +76,7 @@
 							<input id="content" name="commentContent" style="width: 750px; height: 60px" placeholder="상점 후기를 남겨주세요">
 							<input type="hidden" name="boardNo" value="${requestScope.vo.boardNo}">
 							<input type="hidden" name="id" value="${sessionScope.mvo.id}">
-							&nbsp;&nbsp;<button type="submit" style="width: 60px">등록</button>
+							&nbsp;&nbsp;<button type="button" onclick="writeComment()" style="width: 60px">등록</button>
 						</form>
 					</tr>
 				</table>
