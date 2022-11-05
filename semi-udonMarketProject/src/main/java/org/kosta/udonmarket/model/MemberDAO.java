@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.sql.DataSource;
 
 public class MemberDAO {
@@ -173,9 +174,32 @@ public class MemberDAO {
 		}finally {
 			closeAll(pstmt, con);
 		}
-		
-
 	}
+	
+	public MemberVO findIdbyNameNoTel(String name, String memberNo, String tel) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO vo = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "Select id from UDON_MEMBER where name = ? and member_no = ? and tel = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, memberNo);
+			pstmt.setString(3, tel);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				vo = new MemberVO(rs.getString(1),name,memberNo,tel);
+		}finally {
+			closeAll(rs, pstmt, con);	
+		}
+		
+		
+		return vo;
+		
+	}
+	
 }
 
 

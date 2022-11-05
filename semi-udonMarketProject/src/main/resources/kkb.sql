@@ -33,8 +33,9 @@ delete from UDON_MARKET where market_no=?
 
 update udon_member set member_type = member_type - 1 where id = 'java3';
 
+Select id from UDON_MEMBER where name = '아이유' and member_no = '987654-211' and tel = '010-1111-1111';
 
-
+Select id from UDON_MEMBER where name = ? and member_no = ? and tel = ?
 
 
 

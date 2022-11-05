@@ -6,5 +6,9 @@
   <input type="text" class="form-control-lg" name="id" placeholder="아이디" required="required"><br><br>
   <input type="password" class="form-control-lg" name="password" placeholder="패스워드" required="required"> <br><br>
   <button type="submit" class="btn-lg">로그인</button><br><br>
+    <a href="${pageContext.request.contextPath}/FindIdFormController.do"> &nbsp;&nbsp;아이디찾기&nbsp;&nbsp;</a>
+    /
+    <a href="${pageContext.request.contextPath}/RegisterMemberFormController.do"> &nbsp;&nbsp;비밀번호찾기&nbsp;&nbsp;</a><br>
+    
   &nbsp;&nbsp;아직 회원이 아니신가요?&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/RegisterMemberFormController.do">회원가입</a>
 </form>
