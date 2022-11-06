@@ -18,10 +18,8 @@ public class TestPagination1 {
 		// 게시물수 47 -> 총페이지수 10 -> 총페이지그룹->3
 		// 현재 페이지 그룹 : 3
 		System.out.println("getNowPageGroup:" + p.getNowPageGroup());
-	
 		// 페이지 그룹의 시작 페이지 : 9
 		System.out.println("getStartPageOfPageGroup:" + p.getStartPageOfPageGroup());
-
 		// 페이지 그룹의 마지막 페이지 : 10
 		System.out.println("getEndPageOfPageGroup:" + p.getEndPageOfPageGroup());
 		// 이전 페이지 그룹이 있는 지 : true

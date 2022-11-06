@@ -65,7 +65,7 @@ COMMIT
 
 CREATE TABLE udon_comment(
 	comment_no NUMBER PRIMARY KEY,
-	comment_content VARCHAR2(100) NOT NULL,
+	comment_content CLOB NOT NULL,
 	comment_time_posted DATE NOT NULL,
 	board_no NUMBER NOT NULL,
 	id VARCHAR2(100) NOT NULL,
@@ -82,7 +82,6 @@ INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java3');
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java');
 SELECT * FROM udon_comment;
-
 COMMIT
 
 CREATE TABLE udon_like (

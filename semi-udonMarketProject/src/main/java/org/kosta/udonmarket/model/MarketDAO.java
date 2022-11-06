@@ -138,6 +138,7 @@ public class MarketDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				marketVO = new MarketVO();
+				marketVO.setId(id);
 				marketVO.setMarketName(rs.getString("market_name"));
 				marketVO.setMarketAddress(rs.getString("market_address"));
 				marketVO.setMarketTel(rs.getString("market_tel"));

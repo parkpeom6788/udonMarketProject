@@ -10,6 +10,7 @@ import org.kosta.udonmarket.model.MarketBoardVO;
 import org.kosta.udonmarket.model.MarketDAO;
 import org.kosta.udonmarket.model.MarketVO;
 import org.kosta.udonmarket.model.MemberVO;
+import org.kosta.udonmarket.model.Pagination;
 
 public class UpdateBoardController implements Controller {
 	@Override
@@ -25,7 +26,16 @@ public class UpdateBoardController implements Controller {
 	        		String id = memberVO.getId();
 	        		MarketVO marketVO = MarketDAO.getInstance().findMarketInfo(id);
 	        		
-	        		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id);
+	        		String pageNo = request.getParameter("pageNo");
+	        		Pagination pagination = null;
+	        		int totalPostCount = MarketBoardDAO.getInstance().getTotalPostCount(id);
+	        		
+	        		if(pageNo==null)
+	        			pagination = new Pagination(totalPostCount);
+	        		else
+	        			pagination = new Pagination(totalPostCount,  Integer.parseInt(pageNo));
+	        		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id, pagination);
+	        		request.setAttribute("pagination", pagination);
 	        		request.setAttribute("boardList", boardList);
 	        		request.setAttribute("marketVO", marketVO);
 	        		

@@ -11,6 +11,7 @@ import org.kosta.udonmarket.model.MarketBoardVO;
 import org.kosta.udonmarket.model.MarketDAO;
 import org.kosta.udonmarket.model.MarketVO;
 import org.kosta.udonmarket.model.MemberVO;
+import org.kosta.udonmarket.model.Pagination;
 
 public class DeleteBoardController implements Controller {
 
@@ -23,18 +24,23 @@ public class DeleteBoardController implements Controller {
 		MarketBoardDAO.getInstance().deleteMarket(board_no);
 		
 		MemberVO memberVO = (MemberVO)session.getAttribute("mvo");
-//		String id = memberVO.getId();
-//		MarketVO marketVO = MarketDAO.getInstance().findMarketInfo(id);
-//		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id);
+		String id = memberVO.getId();
+		MarketVO marketVO = MarketDAO.getInstance().findMarketInfo(id);
+
+		String pageNo = request.getParameter("pageNo");
+		Pagination pagination = null;
+		int totalPostCount = MarketBoardDAO.getInstance().getTotalPostCount(id);
 		
-		
-		String id = request.getParameter("id");
-//		
-//		request.setAttribute("boardList", boardList);
-//		request.setAttribute("marketVO", marketVO);
-		
-		
-//request.setAttribute("url", "board/list.jsp");	
+		if(pageNo==null)
+			pagination = new Pagination(totalPostCount);
+		else
+			pagination = new Pagination(totalPostCount,  Integer.parseInt(pageNo));
+		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id, pagination);
+		request.setAttribute("pagination", pagination);
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("marketVO", marketVO);
+		request.setAttribute("url", "board/list.jsp");	
+
 		return "FindBoardListController.do?id="+id;
 	}
 }
