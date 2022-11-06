@@ -36,10 +36,9 @@
 		xhr.onreadystatechange = function(){	
 			if(xhr.readyState==4&&xhr.status==200){
 				let comment = JSON.parse(xhr.responseText);
-				let data
-				document.getElementById("commentView").innerHTML = "<td>"+comment.id+"<br>"+comment.commentContent+"<br>"+comment.commentTimePosted+"</td>"
+				let data = "<td>"+comment.id+"<br>"+comment.commentContent+"<br>"+comment.commentTimePosted+"</td>";
+				document.getElementById("commentView").innerHTML = data;
 				commentContent.value="";
-				location.reload();
 			}
 		}
 		xhr.open("post","WriteCommentController.do");
