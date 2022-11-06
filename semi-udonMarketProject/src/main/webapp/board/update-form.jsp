@@ -20,6 +20,8 @@
 		</tr>
 	</tbody>
 </table>
-	<button type="submit">수정 완료</button>
-	<button type="submit">수정 취소</button>
+	<div align="center">
+		<button type="submit">수정 완료</button>
+		<button type="submit">수정 취소</button>
+	</div>
 </form>

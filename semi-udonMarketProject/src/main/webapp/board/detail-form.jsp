@@ -8,11 +8,16 @@
 		<td>조회수 ${requestScope.vo.hits}</td>
 		<td>${requestScope.vo.timePosted}</td>
 	</tr>
-
 	<tbody>
 		<tr>
 			<td colspan="4">
-				<pre style="font-family: 'Jua', sans-serif"><font size="4">${requestScope.vo.content}</font></pre>
+				<pre style="font-family: 'Jua', sans-serif"><font size="4">
+					<c:if test="${requestScope.vo.imageName != null }">
+						<img src="saveData/${requestScope.vo.imageName }">
+					</c:if>
+					${requestScope.vo.content}
+				</font>
+				</pre>
 	<%-- 			 <pre>
 					<c:if test="${requestScope.filename1 != null}">
 				 		<font size="4">${requestScope.vo.content}</font>
@@ -23,21 +28,38 @@
 				 </pre> --%>
 			</td>
 		</tr>
+		<tr align="center">
+			<td>
+					<a href="FindBoardListController.do?id=${requestScope.id }"><button type="button">뒤로가기</button></a>
+			<c:if test="${sessionScope.memberVO.id == requestScope.id }">
+						<button type="button" onclick="deletePost()">삭제</button>			
+						<button type="button" onclick="updatePost()">수정</button>	
+			</c:if>	
+			</td>
+		</tr>
 	</tbody>
+	
+	<!-- 좋아요 부분   -->
+	<tfoot>
+			<tr>
+			<td>
+				<form action="CheckLoveController.do" method="get">
+					 <button type="submit" name="heart" value="♡" onkeyup="checkLove()"></button>
+					 <span id="checkResult"></span>
+				</form>
+			</td>
+			</tr>
+	</tfoot>		
+	<!-- 좋아요 부분   -->
+	
 </table>
+	<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
+		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
+	</form>
+	<form id="updateForm" action="UpdateBoardFormController.do?id=${requestScope.id }" method="post">
+		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
+	</form>
 
-	<div align="center">
-		<button type="button" onclick="deletePost()">삭제</button>			
-		<button type="button" onclick="updatePost()">수정</button>	
-	</div>
-	
-	<form id="deleteForm" action="DeleteBoardController.do" method="post">
-		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
-	</form>
-	
-	<form id="updateForm" action="UpdateBoardFormController.do" method="post">
-		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
-	</form>
 	<script>
 		function deletePost() {
 			if(confirm("삭제하시겠습니까?")) {
@@ -49,4 +71,35 @@
 				document.getElementById("updateForm").submit();
 			}
 		}
+		/* ajax 좋아요 부분 */
+		function checkLove() {
+			
+			checkFlag = false;
+			
+			let heart = document.getElementById("heart").value; // 하트값 
+			let checkResultSpan = document.getElementById("checkResult");
+			
+			let xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function() {				
+			
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					let flag = xhr.responseText;
+					
+					//out.print(flag); // false가 옴 
+					
+					if(message = "ok") {
+						checkResultSpan.innerHTML = "<font color=red>♥</font>";
+						checkFlag = true;
+					} else {
+						checkResultSpan.innerHTML = "<font color=white>♡</font>";
+						}
+					}
+				}
+				xhr.open("get","CheckLoveController.do?checkFlag="+checkFlag);
+				xhr.send();
+			}
+		}
+		/* ajax 좋아요 부분 */
+		
 	</script>

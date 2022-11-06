@@ -82,13 +82,19 @@ INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java3');
 INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요',SYSDATE,1,'java');
 SELECT * FROM udon_comment;
+
 COMMIT
 
+CREATE TABLE udon_like (
+	board_no PRIMARY KEY ,
+	id NOT NULL,
+	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no),  
+	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
+)
 
+SELECT * FROM udon_like;
 
-
-
-
+COMMIT
 
 
 

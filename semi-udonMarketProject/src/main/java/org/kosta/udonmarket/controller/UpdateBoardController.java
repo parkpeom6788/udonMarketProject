@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.rowset.serial.SerialException;
-
 import org.kosta.udonmarket.model.MarketBoardDAO;
 import org.kosta.udonmarket.model.MarketBoardVO;
 import org.kosta.udonmarket.model.MarketDAO;
@@ -17,9 +15,8 @@ public class UpdateBoardController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	        	HttpSession session = request.getSession(false);
-	        	
+	        	      	
 	        	long board_no= Long.parseLong(request.getParameter("board_No"));
-	        	
 	        	MarketBoardVO marketBoardVO = MarketBoardDAO.getInstance().findMarketBoardByBoardNo(board_no);
 	        	
 	        	if(session != null || marketBoardVO != null) {
@@ -31,8 +28,11 @@ public class UpdateBoardController implements Controller {
 	        		ArrayList<MarketBoardVO> boardList = MarketBoardDAO.getInstance().findBoardList(id);
 	        		request.setAttribute("boardList", boardList);
 	        		request.setAttribute("marketVO", marketVO);
-	        		request.setAttribute("url", "board/list.jsp");	
+	        		
+	        		session.setAttribute("memberVO", memberVO);
+	        		// BoardDetailController.do?board_no=133
+	        		//request.setAttribute("url", "BoardDetailController.do?board_no="+board_no);	
 	        	}
-	        return "layout.jsp";
+	        return "BoardDetailController.do?board_no="+board_no;
 	       }
 	  }

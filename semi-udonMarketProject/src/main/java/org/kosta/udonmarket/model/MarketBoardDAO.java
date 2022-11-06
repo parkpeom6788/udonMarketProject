@@ -157,6 +157,7 @@ public class MarketBoardDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
 	// 게시글 수정
 	public void updateMarket(String title,String content,long board_no) throws SQLException {
 		Connection con = null;
@@ -172,6 +173,11 @@ public class MarketBoardDAO {
 		} finally {
 			closeAll(pstmt,con);
 		}
+	}
+	
+	// 좋아요  조인 3개 . MemberVO의  id 와 udon_market_board의  board_no 
+	public void bGood(int idx) {
+		
 	}
 }
 

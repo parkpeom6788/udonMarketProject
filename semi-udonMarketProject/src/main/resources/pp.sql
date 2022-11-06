@@ -27,3 +27,7 @@ update udon_market_board set title = '수정됐나' , content = '수정됏나' w
 
 select * from udon_market_board where board_no = 2; 
 
+select * from udon_market_board;
+
+
+

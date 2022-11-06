@@ -19,6 +19,8 @@ public class FindBoardListController implements Controller {
 		request.setAttribute("marketVO", marketVO);
 		
 		ArrayList<MarketBoardVO> list = MarketBoardDAO.getInstance().findBoardList(id);
+		
+		request.setAttribute("id", id);
 		request.setAttribute("boardList", list);
 		request.setAttribute("url", "board/list.jsp");
 		return "layout.jsp";

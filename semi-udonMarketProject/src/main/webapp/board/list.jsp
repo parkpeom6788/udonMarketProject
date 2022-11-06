@@ -39,7 +39,7 @@
 		<c:forEach items="${requestScope.boardList }" var="list">
 		<tr>
 			<td style="text-align: center">${list.boardNo }</td>
-			<td><a href="BoardDetailController.do?board_no=${list.boardNo}">${list.title }</a></td>
+			<td><a href="BoardDetailController.do?board_no=${list.boardNo}&id=${requestScope.id }">${list.title }</a></td>
 			<td style="text-align: center">${list.timePosted }</td>
 		</tr>
 		</c:forEach>

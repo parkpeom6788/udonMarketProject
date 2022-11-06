@@ -10,7 +10,11 @@ public class UpdateBoardFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long board_no = Long.parseLong(request.getParameter("board_no"));
 		
+		String id = request.getParameter("id");
+		
 		MarketBoardVO  marketBoardVO = MarketBoardDAO.getInstance().findMarketBoardByBoardNo(board_no);
+		
+		request.setAttribute("id", id);
 		request.setAttribute("marketBoardVO", marketBoardVO);
 		request.setAttribute("url", "board/update-form.jsp");
 		return "layout.jsp";

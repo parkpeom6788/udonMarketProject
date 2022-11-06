@@ -86,9 +86,6 @@ public class WritePostController implements Controller {
 					pw.close();
 				}
 			}
-			System.out.println(filename1);
-			request.setAttribute("filename1", filename1);
-			
 			if(session != null || memberVO != null) {
 				MarketBoardDAO.getInstance().posting(title, content, filename1, id);
 			}
@@ -98,6 +95,7 @@ public class WritePostController implements Controller {
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("marketVO", marketVO);
 		request.setAttribute("url", "board/list.jsp");	
-		return "layout.jsp";
+		
+		return "FindBoardListController.do?id="+id;
 	}
 }
