@@ -13,14 +13,6 @@
 		<tr>
 			<td colspan="4">
 				<pre style="font-family: 'Jua', sans-serif"><font size="4">${requestScope.vo.content}</font></pre>
-	<%-- 			 <pre>
-					<c:if test="${requestScope.filename1 != null}">
-				 		<font size="4">${requestScope.vo.content}</font>
-				 	</c:if>
-				 	<c:otherwise>
-				 		<font size="4">${requestScope.vo.content}</font>
-				 	</c:otherwise>	
-				 </pre> --%>
 			</td>
 		</tr>
 	</tbody>
@@ -49,14 +41,8 @@
 				document.getElementById("updateForm").submit();
 			}
 		}
-		function writeComment(event){
-			let content = document.getElementById("content").value.trim();
-			if(content==""){
-				alert("상점 후기를 입력해주세요");
-				event.preventDefault();
-				return;
-			}
-			document.getElementById("content").submit();
+		function writeComment(){
+			let xhr = new 
 		}
 	</script>
 	
@@ -69,17 +55,9 @@
 		</c:forEach>
 		<tr>
 			<td>
-				<table>
-					<tr>
-						${sessionScope.mvo.id }<br>
-						<form id="contentForm" action="WriteCommentController.do" method="post" onsubmit="writeComment(event)">
-							<input id="content" name="commentContent" style="width: 750px; height: 60px" placeholder="상점 후기를 남겨주세요">
-							<input type="hidden" name="boardNo" value="${requestScope.vo.boardNo}">
-							<input type="hidden" name="id" value="${sessionScope.mvo.id}">
-							&nbsp;&nbsp;<button type="button" onclick="writeComment()" style="width: 60px">등록</button>
-						</form>
-					</tr>
-				</table>
+				${sessionScope.mvo.id }<br>
+				<input type="text" name="commentContent" style="width: 750px; height: 50px" placeholder="상점 후기를 작성해주세요">
+				<button type="button" style="width: 70px" onclick="writeComment()">등록</button>
 			</td>
 		</tr>
 	</table>

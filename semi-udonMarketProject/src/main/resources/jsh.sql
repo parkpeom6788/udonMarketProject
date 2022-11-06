@@ -39,6 +39,16 @@ SELECT id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') 
 FROM udon_comment
 WHERE board_no = 1;
 
+-- udon_comment 테이블의 comment_content 의 타입을 VARCHAR2(100) 에서 CLOB으로 변경
+ALTER TABLE udon_comment ADD content CLOB;
+ALTER TABLE udon_comment DROP COLUMN comment_content;
+ALTER TABLE udon_comment RENAME COLUMN content TO comment_content;
+-- NOT NULL 제약조건 추가는 ADD 가 아니라 MODIFY 를 사용함
+	ALTER TABLE udon_comment MODIFY comment_content NOT NULL;
+
+SELECT * FROM udon_comment;
+COMMIT
+
 -- 장문의 댓글이 어떻게 보이는 지 확인
 	--INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 꼭 드셔보세요~',SYSDATE,1,'java');
 		-- ORA-12899: value too large for column "SCOTT"."UDON_COMMENT"."COMMENT_CONTENT" (actual: 107, maximum: 100)

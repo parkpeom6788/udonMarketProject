@@ -65,7 +65,7 @@ COMMIT
 
 CREATE TABLE udon_comment(
 	comment_no NUMBER PRIMARY KEY,
-	comment_content VARCHAR2(100) NOT NULL,
+	comment_content CLOB NOT NULL,
 	comment_time_posted DATE NOT NULL,
 	board_no NUMBER NOT NULL,
 	id VARCHAR2(100) NOT NULL,
@@ -84,13 +84,6 @@ INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no
 
 DELETE FROM udon_comment WHERE board_no=1;
 
--- udon_comment 테이블의 comment_content 의 타입을 VARCHAR2(100) 에서 CLOB으로 변경
-ALTER TABLE udon_comment ADD content CLOB;
-ALTER TABLE udon_comment DROP COLUMN comment_content;
-ALTER TABLE udon_comment RENAME COLUMN content TO comment_content;
-
-SELECT * FROM udon_comment;
-COMMIT
 
 
 
