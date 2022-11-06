@@ -41,45 +41,9 @@
 				document.getElementById("updateForm").submit();
 			}
 		}
-		function writeComment(){
-			let commentContent = document.getElementById("commentContent");
-			if(commentContent.value.trim()==""){
-				alert("상품 후기를 작성해주세요");
-				commentContent.focus();
-				return;
-			}
-			let xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function(){	
-				if(xhr.readyState==4&&xhr.status==200){
-					let comment = JSON.parse(xhr.responseText);
-					document.getElementById("commentView").innerHTML = "<td>"+comment.id+"<br>"+comment.commentContent+"<br>"+comment.commentTimePosted+"</td>"
-					commentContent.value="";
-				}
-			}
-			xhr.open("post","WriteCommentController.do");
-			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-			xhr.send("boardNo=${requestScope.vo.boardNo}&id=${sessionScope.mvo.id}&content="+commentContent.value);
-		}
 	</script>
-	
-	<br><p>상점 후기</p>
-	<table id="comment" class="table">
-		<c:forEach items="${requestScope.commentList }" var="list">
-			<tr>
-				<td>${list.id }<br>${list.commentContent }<br>${list.commentTimePosted }</td>
-			</tr>
-		</c:forEach>
-		<tr id="commentView"></tr>
-		<tr>
-			<td>
-				${sessionScope.mvo.id }<br>
-				<input type="text" id="commentContent" style="width: 750px; height: 50px" placeholder="상점 후기를 작성해주세요">
-				<button type="button" style="width: 70px" onclick="writeComment()">등록</button>
-			</td>
-		</tr>
-	</table>
-
-	
+	<br>
+	<c:import url="/comment/comment.jsp"></c:import>
 	
 	
 	

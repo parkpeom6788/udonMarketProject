@@ -35,7 +35,7 @@ SELECT market_name, market_address, market_tel, item, info, market_no FROM udon_
 SELECT COUNT(*) FROM udon_market_board WHERE id='java4';
 
 -- findCommentList() 댓글 조회하기
-SELECT id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, board_no
+SELECT comment_no, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, id, board_no
 FROM udon_comment
 WHERE board_no = 1;
 
@@ -56,6 +56,7 @@ COMMIT
 		INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 꼭 드셔보세요~',SYSDATE,1,'java');
 	
 	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요.',SYSDATE,1,'java');
+	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 댓글수정삭제 테스트 다른 아이디',SYSDATE,1,'java2');
 	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야',SYSDATE,1,'java');
 	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야.',SYSDATE,1,'java');
 	INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,'안녕하세요. 마늘상점의 채소들은 정말 싱싱하고 맛있어요. 정말이야. 아',SYSDATE,1,'java');
@@ -84,6 +85,8 @@ COMMIT
 	)
 	WHERE rnum=1;
 
+-- deleteComment() 댓글 삭제하기
+DELETE FROM udon_comment WHERE comment_no=57;
 
 
 
