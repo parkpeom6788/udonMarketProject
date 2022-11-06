@@ -7,7 +7,7 @@
 	<c:forEach items="${requestScope.commentList }" var="list">
 		<tr>
 			<td>
-				${list.id }<br>${list.commentContent }<br>${list.commentTimePosted }&nbsp&nbsp
+				${list.id }<br>${list.commentContent }<br>${list.commentTimePosted }&nbsp;&nbsp;
 				<c:if test="${sessionScope.mvo.id==list.id }">
 					<span onclick="commentDelete()" style="cursor: pointer" class="text-primary" >수정</span>
 					<span onclick="commentDelete(${list.commentNo})" style="cursor: pointer" class="text-secondary" >삭제</span>
@@ -15,7 +15,7 @@
 			</td>
 		</tr>
 	</c:forEach>
-	<tr id="commentView"></tr>
+ 	<tr id="commentView"></tr> 
 	<tr>
 		<td>
 			${sessionScope.mvo.id }<br>
@@ -24,8 +24,9 @@
 		</td>
 	</tr>
 </table>
+
 <script>
-	function writeComment(){
+ 	function writeComment(){
 		let commentContent = document.getElementById("commentContent");
 		if(commentContent.value.trim()==""){
 			alert("상품 후기를 작성해주세요");
@@ -35,16 +36,20 @@
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(){	
 			if(xhr.readyState==4&&xhr.status==200){
-				let comment = JSON.parse(xhr.responseText);
-				let data = "<td>"+comment.id+"<br>"+comment.commentContent+"<br>"+comment.commentTimePosted+"</td>";
-				document.getElementById("commentView").innerHTML = data;
+				/*
+					Ajax로 바로 댓글 등록상황이 보이는 경우 ( but 하나만 달 수 있음)
+					let comment = JSON.parse(xhr.responseText);
+					let data = "<td>"+comment.id+"<br>"+comment.commentContent+"<br>"+comment.commentTimePosted+"</td>";
+					document.getElementById("commentView").innerHTML = data;
+				*/
 				commentContent.value="";
+				location.reload();
 			}
 		}
 		xhr.open("post","WriteCommentController.do");
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		xhr.send("boardNo=${requestScope.vo.boardNo}&id=${sessionScope.mvo.id}&content="+commentContent.value);
-	}
+	} 
 	
 	function commentDelete(commentNo){
 		let result = confirm("상점 후기를 삭제하시겠습니까?");

@@ -67,31 +67,26 @@
 
 		/* ajax 좋아요 부분 */
 		function checkLove() {
-			
 			let checkFlag = false;
 			
 			let heart = document.getElementById("heart").value; // 하트값 
 			let checkResultSpan = document.getElementById("checkResult");
 			
-					out.print("uihiuhuihiuhui"); // false가 옴 
+			out.print("uihiuhuihiuhui"); // false가 옴 
 					
-						let xhr = new XMLHttpRequest();
-						
-						xhr.onreadystatechange = function() {				
-							
-						if(xhr.readyState == 4 && xhr.status == 200) {
-
-						if(xhr.responseText == "ok") {
-							checkResultSpan.innerHTML = "<font color=red>♥</font>";
-							checkFlag = true;
+			let xhr = new XMLHttpRequest();	
+			xhr.onreadystatechange = function() {								
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					if(xhr.responseText == "ok") {
+						checkResultSpan.innerHTML = "<font color=red>♥</font>";
+						checkFlag = true;
 					} else {
 						checkResultSpan.innerHTML = "<font color=white>♡</font>";
-						}
 					}
 				}
-				xhr.open("get","CheckLoveController.do?checkFlag="+checkFlag);
-				xhr.send();
 			}
+			xhr.open("get","CheckLoveController.do?checkFlag="+checkFlag);
+			xhr.send();
 		}
 		/* ajax 좋아요 부분 */
 	</script>
