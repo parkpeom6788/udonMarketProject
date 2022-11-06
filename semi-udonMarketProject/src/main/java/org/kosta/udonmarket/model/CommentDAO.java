@@ -63,16 +63,44 @@ public class CommentDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = dataSource.getConnection();
+			con = dataSource.getConnection();	
 			String sql = "INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no,id) VALUES(udon_comment_seq.nextval,?,SYSDATE,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, content);
 			pstmt.setLong(2, boardNo);
 			pstmt.setString(3, id);
 			pstmt.executeUpdate();
+			pstmt.close();
 		}finally {
 			closeAll(pstmt, con);
 		}
+	}
+	
+	public CommentVO findCommentByBoardNoAndId(String id, long boardNo) throws SQLException {
+		CommentVO commentVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT comment_content, comment_time_posted, id, board_no ");
+			sql.append("FROM( ");
+			sql.append("SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, board_no ");
+			sql.append("FROM udon_comment ");
+			sql.append("WHERE id=? AND board_no=? ");
+			sql.append(") ");
+			sql.append("WHERE rnum=1");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setLong(2, boardNo);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				commentVO = new CommentVO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4));
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return commentVO;
 	}
 }
 

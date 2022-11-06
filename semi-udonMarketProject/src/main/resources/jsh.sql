@@ -23,7 +23,7 @@ SELECT market_name, market_address, market_tel, item, info, market_no FROM udon_
 	FROM udon_market_board
 	WHERE id='java4';
 	-- step2
-	SELECT b.board_no, b.title, b.time_posted
+	SELECT board_no, title, time_posted
 	FROM(
 		SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted, id
 		FROM udon_market_board
@@ -70,8 +70,19 @@ INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no
 SELECT * FROM udon_comment;
 COMMIT
 
-
-
+-- 게시판 내에서 회원 아이디로 가장 최근 댓글 조회
+	-- step1
+	SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, board_no
+	FROM udon_comment
+	WHERE id='java' AND board_no=151;
+	-- step2
+	SELECT comment_content, comment_time_posted, id, board_no
+	FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, board_no
+		FROM udon_comment
+		WHERE id='java' AND board_no=151
+	)
+	WHERE rnum=1;
 
 
 

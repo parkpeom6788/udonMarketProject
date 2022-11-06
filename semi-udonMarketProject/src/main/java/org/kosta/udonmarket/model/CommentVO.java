@@ -20,6 +20,14 @@ public class CommentVO {
 		this.id = id;
 		this.boardNo = boardNo;
 	}
+	
+	public CommentVO(String commentContent, String commentTimePosted, String id, long boardNo) {
+		super();
+		this.commentContent = commentContent;
+		this.commentTimePosted = commentTimePosted;
+		this.id = id;
+		this.boardNo = boardNo;
+	}
 
 	// 댓글 작성하기
 	public CommentVO(String commentContent, String id, long boardNo) {
