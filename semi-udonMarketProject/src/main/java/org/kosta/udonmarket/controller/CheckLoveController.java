@@ -23,7 +23,8 @@ public class CheckLoveController implements Controller {
 		
 		// 1. 일단 하트  체크 해제 되는지 부터  
 		boolean result = request.getParameter("checkFlag") != null; 
-		// System.out.println(result); false
+	    
+		System.out.println(result); 
 		
 		String message = null;
 		

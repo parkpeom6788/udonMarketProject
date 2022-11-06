@@ -66,20 +66,24 @@
 		}
 
 		/* ajax 좋아요 부분 */
-		function checkLove() {			
-			checkFlag = false;
+		function checkLove() {
+			
+			let checkFlag = false;
 			
 			let heart = document.getElementById("heart").value; // 하트값 
 			let checkResultSpan = document.getElementById("checkResult");
 			
-			let xhr = new XMLHttpRequest();
-			
-			xhr.onreadystatechange = function() {						
-				if(xhr.readyState == 4 && xhr.status == 200) {
-					let flag = xhr.responseText;				
-					if(message = "ok") {
-						checkResultSpan.innerHTML = "<font color=red>♥</font>";
-						checkFlag = true;
+					out.print("uihiuhuihiuhui"); // false가 옴 
+					
+						let xhr = new XMLHttpRequest();
+						
+						xhr.onreadystatechange = function() {				
+							
+						if(xhr.readyState == 4 && xhr.status == 200) {
+
+						if(xhr.responseText == "ok") {
+							checkResultSpan.innerHTML = "<font color=red>♥</font>";
+							checkFlag = true;
 					} else {
 						checkResultSpan.innerHTML = "<font color=white>♡</font>";
 						}
@@ -95,21 +99,3 @@
 	<c:import url="/comment/comment.jsp"></c:import>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> refs/heads/jsh-pagination
