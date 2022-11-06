@@ -77,17 +77,17 @@ public class CommentDAO {
 		}
 	}
 	
-	public CommentVO findCommentByBoardNoAndId(String id, long boardNo) throws SQLException {
-		CommentVO commentVO = null;
+	public long findRecentCommentNoByIdAndBoardNo(String id, long boardNo) throws SQLException {
+		long recentCommentNo = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT comment_no, comment_content, comment_time_posted, id, board_no ");
+			sql.append("SELECT comment_no ");
 			sql.append("FROM( ");
-			sql.append("SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, board_no ");
+			sql.append("SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, comment_no ");
 			sql.append("FROM udon_comment ");
 			sql.append("WHERE id=? AND board_no=? ");
 			sql.append(") ");
@@ -95,6 +95,28 @@ public class CommentDAO {
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
 			pstmt.setLong(2, boardNo);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				recentCommentNo = rs.getLong(1);
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return recentCommentNo;
+	}
+	
+	public CommentVO findCommentByCommentNo(long recentCommentNo) throws SQLException {
+		CommentVO commentVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT comment_no, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, id, board_no ");
+			sql.append("FROM udon_comment ");
+			sql.append("WHERE comment_no = ?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setLong(1, recentCommentNo);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				commentVO = new CommentVO();
@@ -109,6 +131,7 @@ public class CommentDAO {
 		}
 		return commentVO;
 	}
+
 	public void deleteComment(long commentNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -122,6 +145,8 @@ public class CommentDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
+	
 }
 
 

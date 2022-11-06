@@ -71,6 +71,21 @@ INSERT INTO udon_comment(comment_no,comment_content,comment_time_posted,board_no
 SELECT * FROM udon_comment;
 COMMIT
 
+-- findCommentByCommentNo() 댓글번호로 댓글 조회
+	-- step1. 해당 게시판에서 회원이 가장 최근에 단 댓글의 댓글번호 조회하기
+	SELECT comment_no
+	FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, comment_no
+		FROM udon_comment
+		WHERE id='java' AND board_no=151
+	)
+	WHERE rnum=1;
+	-- step2. 댓글번호로 댓글 조회
+	SELECT comment_no, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, id, board_no
+	FROM udon_comment
+	WHERE comment_no = 54; 
+
+
 -- 게시판 내에서 회원 아이디로 가장 최근 댓글 조회
 	-- step1
 	SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC) AS rnum, id, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, board_no

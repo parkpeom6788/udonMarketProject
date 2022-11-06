@@ -17,9 +17,11 @@ public class WriteCommentController implements Controller {
 		
 		CommentDAO.getInstance().writeComment(content, boardNo, id);
 		
-		CommentVO commentVO = CommentDAO.getInstance().findCommentByBoardNoAndId(id, boardNo);
+		long recentCommentNo = CommentDAO.getInstance().findRecentCommentNoByIdAndBoardNo(id,boardNo);
+		CommentVO commentVO = CommentDAO.getInstance().findCommentByCommentNo(recentCommentNo);
+
 		JSONObject json = new JSONObject(commentVO);
-		request.setAttribute("responsebody", json);
+		request.setAttribute("responsebody", json.toString());
 		
 		return "AjaxView";
 	}

@@ -11,7 +11,8 @@ public class DeleteCommentController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long commentNo = Long.parseLong(request.getParameter("commentNo"));
 		CommentDAO.getInstance().deleteComment(commentNo);
-		request.setAttribute("responsebody", "삭제되었습니다");
+		
+		request.setAttribute("responsebody", "삭제완료");
 		
 		return "AjaxView";
 	}

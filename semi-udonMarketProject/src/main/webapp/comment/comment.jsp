@@ -36,8 +36,10 @@
 		xhr.onreadystatechange = function(){	
 			if(xhr.readyState==4&&xhr.status==200){
 				let comment = JSON.parse(xhr.responseText);
+				let data
 				document.getElementById("commentView").innerHTML = "<td>"+comment.id+"<br>"+comment.commentContent+"<br>"+comment.commentTimePosted+"</td>"
 				commentContent.value="";
+				location.reload();
 			}
 		}
 		xhr.open("post","WriteCommentController.do");
@@ -51,10 +53,10 @@
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(){	
 				if(xhr.readyState==4&&xhr.status==200){
-				
+					location.reload();
 				}
 			}
-			xhr.open("get","DeleteCommentController.do?commentNo="+commentNo);
+			xhr.open("get","DeleteCommentController.do?commentNo="+commentNo+"&boardNo="+${requestScope.vo.boardNo});
 			xhr.send();
 		}
 	}
