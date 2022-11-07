@@ -12,7 +12,7 @@
 				<td><input type="text" name="title" placeholder="글제목" required="required"></td>
 			</tr>
 			<tr>
-				<td>파일: <input type="file" name="upload"/></td>
+				<td>파일: <input type="file" name="upload" required="required"/></td>
 			</tr>
 			<tr>
 				<td><textarea rows="10" class="form-control" name="content" placeholder="본문내용" required="required"></textarea></td>

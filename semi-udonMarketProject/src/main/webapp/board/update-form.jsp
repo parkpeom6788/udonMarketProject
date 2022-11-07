@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 
-<form action="UpdateBoardController.do?board_No=${marketBoardVO.boardNo}" method="post">
+<form action="UpdateBoardController.do?board_No=${marketBoardVO.boardNo}&id=${requestScope.id }" method="post">
 <table class="table">
 	<thead>
 		<tr>

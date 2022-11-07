@@ -15,7 +15,6 @@ public class BoardDetailController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession(false);
-		
 		// 특정사용자 계정 불러옴 
 		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
 		String id = request.getParameter("id");

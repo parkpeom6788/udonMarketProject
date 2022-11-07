@@ -18,12 +18,17 @@ public class UpdateBoardController implements Controller {
 	        	HttpSession session = request.getSession(false);
 	        	      	
 	        	long board_no= Long.parseLong(request.getParameter("board_No"));
+	        	
+	        	String id = null;
+	       	
 	        	MarketBoardVO marketBoardVO = MarketBoardDAO.getInstance().findMarketBoardByBoardNo(board_no);
 	        	
 	        	if(session != null || marketBoardVO != null) {
 	        		MarketBoardDAO.getInstance().updateMarket(request.getParameter("title"),request.getParameter("content"),marketBoardVO.getBoardNo());
 	        		MemberVO memberVO = (MemberVO)session.getAttribute("mvo");
-	        		String id = memberVO.getId();
+	        		
+	        		id = memberVO.getId();
+	        		
 	        		MarketVO marketVO = MarketDAO.getInstance().findMarketInfo(id);
 	        		
 	        		String pageNo = request.getParameter("pageNo");
@@ -43,6 +48,6 @@ public class UpdateBoardController implements Controller {
 	        		// BoardDetailController.do?board_no=133
 	        		//request.setAttribute("url", "BoardDetailController.do?board_no="+board_no);	
 	        	}
-	        return "BoardDetailController.do?board_no="+board_no;
+	        return "BoardDetailController.do?board_no="+board_no+"&id="+id;
 	       }
 	  }

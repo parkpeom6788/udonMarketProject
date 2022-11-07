@@ -1,6 +1,10 @@
 package org.kosta.udonmarket.model;
 
-public class MarketBoardVO {
+import java.io.Serializable;
+
+public class MarketBoardVO implements Serializable{
+	
+	private static final long serialVersionUID = -7580902802194348215L;
 	private long boardNo;
 	private String title;
 	private String content;
