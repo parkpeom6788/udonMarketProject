@@ -17,6 +17,8 @@ public class MarketBoardVO implements Serializable{
 		super();
 	}
 	
+	
+	
 	// 상세글보기
 	public MarketBoardVO(long boardNo, String title, String content, String imageName, String timePosted, long hits, MarketVO marketVO) {
 		super();
@@ -46,6 +48,10 @@ public class MarketBoardVO implements Serializable{
 		this.content = content;
 		this.imageName = imageName;
 		this.marketVO = marketVO;
+	}
+
+	public MarketBoardVO(String imageName) {
+		this.imageName = imageName;
 	}
 
 	public long getBoardNo() {

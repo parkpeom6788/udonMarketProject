@@ -96,11 +96,3 @@ DROP TABLE udon_like;
 SELECT * FROM udon_like;
 
 COMMIT
-
-
-
-
-
-
-
-

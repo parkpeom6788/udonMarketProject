@@ -24,10 +24,9 @@ from udon_market_board b , udon_market m
 where b.id = m.id;
 
 update udon_market_board set title = '수정됐나' , content = '수정됏나' where board_no = 2;
-
 select * from udon_market_board where board_no = 2; 
-
 select * from udon_market_board;
 
+select IMAGE_NAME  from udon_market_board where BOARD_NO = 17;
 
 

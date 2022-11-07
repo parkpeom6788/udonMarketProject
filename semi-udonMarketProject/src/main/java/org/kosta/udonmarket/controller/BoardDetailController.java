@@ -15,24 +15,27 @@ public class BoardDetailController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession(false);
+		
 		// 특정사용자 계정 불러옴 
 		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
 		String id = request.getParameter("id");
 		Long no = Long.parseLong(request.getParameter("board_no"));
 		
+		// 이미지
 		MarketBoardVO marketBoardVO = MarketBoardDAO.getInstance().boardDetail(no);
 		@SuppressWarnings("unchecked")
-		ArrayList<Long>listhits =  (ArrayList<Long>) session.getAttribute("communityboard");
+		
+		ArrayList<Long> listhits =  (ArrayList<Long>) session.getAttribute("communityboard");
 			if(listhits.contains(no)==false) {
 				MarketBoardDAO.getInstance().hit(no);
 				listhits.add(no);
 			}
-		
 		request.setAttribute("id", id);
+		
+		//이미지
 		request.setAttribute("vo", marketBoardVO);
-
+		
 		session.setAttribute("memberVO", memberVO);	
-
 		ArrayList<CommentVO> list = CommentDAO.getInstance().findCommentList(no);
 		request.setAttribute("commentList", list);
 

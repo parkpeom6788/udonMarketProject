@@ -200,8 +200,31 @@ public class MarketBoardDAO {
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
-		
 		return totalPostCount;
+	}
+	
+	// 게시글 이미지 찾기 메서드
+	public MarketBoardVO findImageBoard(String Board_no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MarketBoardVO marketBoardVO = null;
+		try {
+			con = dataSource.getConnection();
+			
+			String sql = " select IMAGE_NAME  from udon_market_board where  = ? ";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, Board_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				marketBoardVO = new MarketBoardVO(rs.getString("IMAGE_NAME"));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return marketBoardVO;
 	}
 }
 

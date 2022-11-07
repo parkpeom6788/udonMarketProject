@@ -38,7 +38,6 @@
 			</td>
 		</tr>
 	</tbody>
-	
 	<!-- 좋아요 부분 -->
 	<tfoot>
 			<tr>
@@ -56,7 +55,6 @@
 			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 		</form>
 	<script type="text/javascript">
-	
 		function deletePost() {
 			if(confirm("삭제하시겠습니까?")) {
 				document.getElementById("deleteForm").submit();
@@ -67,6 +65,7 @@
 				document.getElementById("updateForm").submit();
 			}
 		}
+		
 		/* ajax 좋아요 부분 */
 		function checkLove() {
 			let checkFlag = false;
@@ -74,17 +73,16 @@
 			let checkResultSpan = document.getElementById("checkResult");
 		
 			let xhr = new XMLHttpRequest();
-				
 				xhr.onreadystatechange = function() {				
 				
 				if(xhr.readyState == 4 && xhr.status == 200) {
-					let message = xhr.responseText;
-					alert("좋아요를 클릭하셨습니다.");
+						let message = xhr.responseText;
+						alert("좋아요를 클릭하셨습니다.");
 					if(message == "ok") {
 						checkResultSpan.innerHTML = "<img src=img/hart1.png>";
 						checkFlag = true;
 			} else {
-				checkResultSpan.innerHTML = "<img src=img/hart2.png width=150px height=150px>";
+				checkResultSpan.innerHTML="<img src=img/hart2.png width=150px height=150px>";
 				checkFlag = false;
 				}
 			}
