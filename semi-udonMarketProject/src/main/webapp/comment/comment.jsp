@@ -90,13 +90,11 @@
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		xhr.send("commentNo="+commentNo+"&content="+newContent.value);
 	}
-	
 	function cancleUpdate(){
 		let result = confirm("수정을 취소하시겠습니까?");
 		if(result==true)
 			location.reload();
 	}
-	
 </script>
 
 
