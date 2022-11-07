@@ -19,10 +19,15 @@ public class BoardDetailController implements Controller {
 		// 특정사용자 계정 불러옴 
 		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
 		String id = request.getParameter("id");
+		Long no = Long.parseLong(request.getParameter("board_no"));
 		
-		long no = Long.parseLong(request.getParameter("board_no"));
 		MarketBoardVO marketBoardVO = MarketBoardDAO.getInstance().boardDetail(no);
-		MarketBoardDAO.getInstance().hit(no);
+		@SuppressWarnings("unchecked")
+		ArrayList<Long>listhits =  (ArrayList<Long>) session.getAttribute("communityboard");
+			if(listhits.contains(no)==false) {
+				MarketBoardDAO.getInstance().hit(no);
+				listhits.add(no);
+			}
 		
 		request.setAttribute("id", id);
 		request.setAttribute("vo", marketBoardVO);
