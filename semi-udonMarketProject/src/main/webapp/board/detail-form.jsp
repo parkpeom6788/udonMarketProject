@@ -16,10 +16,7 @@
 						<img src="saveData/${requestScope.vo.imageName }" width="250" height="250">
 					</c:if>
 					${requestScope.vo.content}
-<<<<<<< HEAD
-				</font>
-				</pre>
-=======
+
 				<!-- </font> -->
 				<!-- </pre> -->
 	<%-- 			 <pre>
@@ -30,7 +27,6 @@
 				 		<font size="4">${requestScope.vo.content}</font>
 				 	</c:otherwise>	
 				 </pre> --%>
->>>>>>> refs/heads/pp-업로드작업3
 			</td>
 		</tr>
 		<tr align="center">
@@ -54,7 +50,6 @@
 	</tfoot>		
 	<!-- 좋아요 부분   -->
 </table>
-<<<<<<< HEAD
 
 	<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
 		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
@@ -62,9 +57,8 @@
 	<form id="updateForm" action="UpdateBoardFormController.do?id=${requestScope.id }" method="post">
 		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 	</form>
-
 	<script>
-=======
+
 		<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
 			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 		</form>
@@ -73,7 +67,6 @@
 		</form>
 	<script type="text/javascript">
 	
->>>>>>> refs/heads/pp-업로드작업3
 		function deletePost() {
 			if(confirm("삭제하시겠습니까?")) {
 				document.getElementById("deleteForm").submit();
