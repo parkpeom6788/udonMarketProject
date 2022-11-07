@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -21,7 +22,11 @@ import org.kosta.udonmarket.model.Pagination;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class WritePostController implements Controller {
+public class WritePostController implements Controller , Serializable{
+	
+	
+	private static final long serialVersionUID = 1158776034788940953L;
+
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
