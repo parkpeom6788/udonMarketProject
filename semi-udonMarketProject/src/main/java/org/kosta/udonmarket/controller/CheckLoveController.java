@@ -20,19 +20,25 @@ public class CheckLoveController implements Controller {
 		//String boardNo =request.getParameter("board_no");
 
 		
-		
 		// 1. 일단 하트  체크 해제 되는지 부터  
+
 		boolean result = request.getParameter("checkFlag") != null; 
 	    
 		System.out.println(result); 
 		
+
+		String heart = request.getParameter("heart");
+	    
+		System.out.println(heart); 
+
 		String message = null;
 		
-		if(result) {
-			message ="fail";
-		} else {
+		if(heart.equals("♡")) {
 			message ="ok";
+		} else {
+			message ="fail";
 		}
+		
 		request.setAttribute("responsebody", message);
 		return "AjaxView";
 	}
