@@ -11,13 +11,13 @@
 	<tbody>
 		<tr>
 			<td colspan="4">
-				<pre style="font-family: 'Jua', sans-serif"><font size="4">
+				<!-- <pre style="font-family: 'Jua', sans-serif"><font size="4"> -->
 					<c:if test="${requestScope.vo.imageName != null }">
-						<img src="saveData/${requestScope.vo.imageName }">
+						<img src="saveData/${requestScope.vo.imageName }" width="250" height="250">
 					</c:if>
 					${requestScope.vo.content}
-				</font>
-				</pre>
+				<!-- </font> -->
+				<!-- </pre> -->
 	<%-- 			 <pre>
 					<c:if test="${requestScope.filename1 != null}">
 				 		<font size="4">${requestScope.vo.content}</font>
@@ -39,28 +39,24 @@
 		</tr>
 	</tbody>
 	
-	<!-- 좋아요 부분   -->
+	<!-- 좋아요 부분 -->
 	<tfoot>
 			<tr>
 			<td>
-				<form action="CheckLoveController.do" method="get">
-					 <button type="submit" name="heart" value="♡" onkeyup="checkLove()"></button>
-					 <span id="checkResult"></span>
-				</form>
+				<span id="checkResult"><input type="button" value="♡" id="heart" onclick="checkLove()"/></span>
 			</td>
 			</tr>
 	</tfoot>		
 	<!-- 좋아요 부분   -->
-	
 </table>
-	<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
-		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
-	</form>
-	<form id="updateForm" action="UpdateBoardFormController.do?id=${requestScope.id }" method="post">
-		<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
-	</form>
-
-	<script>
+		<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
+			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
+		</form>
+		<form id="updateForm" action="UpdateBoardFormController.do?id=${requestScope.id }" method="post">
+			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
+		</form>
+	<script type="text/javascript">
+	
 		function deletePost() {
 			if(confirm("삭제하시겠습니까?")) {
 				document.getElementById("deleteForm").submit();
@@ -73,33 +69,28 @@
 		}
 		/* ajax 좋아요 부분 */
 		function checkLove() {
-			
-			checkFlag = false;
-			
-			let heart = document.getElementById("heart").value; // 하트값 
+			let checkFlag = false;
+			let heart = document.getElementById("heart").value; //하트값 ♡
 			let checkResultSpan = document.getElementById("checkResult");
-			
+		
 			let xhr = new XMLHttpRequest();
-			
-			xhr.onreadystatechange = function() {				
-			
+				
+				xhr.onreadystatechange = function() {				
+				
 				if(xhr.readyState == 4 && xhr.status == 200) {
-					let flag = xhr.responseText;
-					
-					//out.print(flag); // false가 옴 
-					
-					if(message = "ok") {
-						checkResultSpan.innerHTML = "<font color=red>♥</font>";
+					let message = xhr.responseText;
+					alert("좋아요를 클릭하셨습니다.");
+					if(message == "ok") {
+						checkResultSpan.innerHTML = "<img src=img/hart1.png>";
 						checkFlag = true;
-					} else {
-						checkResultSpan.innerHTML = "<font color=white>♡</font>";
-						}
-					}
+			} else {
+				checkResultSpan.innerHTML = "<img src=img/hart2.png width=150px height=150px>";
+				checkFlag = false;
 				}
-				xhr.open("get","CheckLoveController.do?checkFlag="+checkFlag);
-				xhr.send();
 			}
 		}
+			xhr.open("get","CheckLoveController.do?heart="+heart);
+			xhr.send();
+		}
 		/* ajax 좋아요 부분 */
-		
 	</script>

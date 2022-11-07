@@ -64,7 +64,7 @@ public class WritePostController implements Controller {
 			
 			String filename1 = mr.getFilesystemName(file1);
 			
-			File file2 = new File("C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp");
+		//	File file2 = new File("C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp");
 			
 			BufferedReader br = null;
 			PrintWriter pw = null;

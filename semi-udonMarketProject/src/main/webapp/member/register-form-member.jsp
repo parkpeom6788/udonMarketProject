@@ -59,8 +59,7 @@ function check(event){
 	if(checkFlag==false){
 		alert("회원가입에 실패했습니다");
 		event.preventDefault();
-		
-	}
+		}
 	}
 
 function checkId(){
@@ -79,7 +78,7 @@ function checkId(){
 				checkFlag=true;
 				}else{
 				checkResultId.innerHTML="아이디가 중복됩니다";
-			}
+				}
 			}
 		}
 	xhr.open("get","${pageContext.request.contextPath}/CheckIdController.do?id="+id);
