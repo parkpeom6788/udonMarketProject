@@ -95,3 +95,6 @@
 		//
 		/* ajax 좋아요 부분 */
 	</script>
+	
+	<br>
+	<c:import url="/comment/comment.jsp"></c:import>
