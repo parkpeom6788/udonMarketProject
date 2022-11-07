@@ -103,9 +103,10 @@ COMMIT
 -- deleteComment() 댓글 삭제하기
 DELETE FROM udon_comment WHERE comment_no=57;
 
-
-
-
+-- updateComment() 댓글 수정하기
+UPDATE udon_comment SET comment_content='댓글이 수정되나요?' WHERE comment_no=5;
+SELECT * FROM udon_comment;
+COMMIT
 
 
 
