@@ -146,6 +146,21 @@ public class CommentDAO {
 		}
 	}
 	
+	public void updateComment(long commentNo, String newContent) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE udon_comment SET comment_content=? WHERE comment_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, newContent);
+			pstmt.setLong(2, commentNo);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
 	
 }
 
