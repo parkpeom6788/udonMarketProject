@@ -92,5 +92,6 @@
 			xhr.open("get","CheckLoveController.do?heart="+heart);
 			xhr.send();
 		}
+		//
 		/* ajax 좋아요 부분 */
 	</script>
