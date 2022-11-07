@@ -19,10 +19,15 @@ public class FrontControllerServlet extends HttpServlet {
     	try {
     		String servletPath = request.getServletPath();
     		String controllerName = servletPath.substring(1, servletPath.lastIndexOf("."));
-			Controller controller = HandlerMapping.getInstance().create(controllerName);
 			
+    		boolean checkResult=CheckLoginInterceptor.getInstance().checkLogin(request, controllerName);
+    		if(checkResult==false) {
+    			response.sendRedirect("member/interceptor-result.jsp");
+    			return;
+    		}
+    		
+    		Controller controller = HandlerMapping.getInstance().create(controllerName);
 			String viewPath = controller.handleRequest(request, response);
-    	
 			if(viewPath.startsWith("redirect:")) {
 				response.sendRedirect(viewPath.substring(9));
 			} else {
