@@ -14,11 +14,12 @@ INSERT INTO udon_member(id,password,name,member_no,address,tel) VALUES('java','a
 INSERT INTO udon_member(id,password,name,member_no,address,tel) VALUES('java2','a','박보검','887654-111','판교','010-2111-1111');
 INSERT INTO udon_member(id,password,name,member_no,address,tel) VALUES('java3','a','강하늘','787654-111','판교','010-3111-1111');
 INSERT INTO udon_member(id,password,name,member_no,address,tel,member_type) VALUES('java4','a','김규빈','687654-111','판교','010-4111-1111',1);
-INSERT INTO udon_member(id,password,name,member_no,address,tel,member_type) VALUES('java5','a','이강인','587654-111','판교','010-5111-1111',1);
+INSERT INTO udon_member(id,password,name,member_no,address,tel) VALUES('java5','a','이강인','587654-111','판교','010-5111-1111');
 INSERT INTO udon_member(id,password,name,member_no,address,tel,member_type) VALUES('java6','a','박채은','487654-211','판교','010-6111-1111',1);
 SELECT * FROM udon_member;
 COMMIT
 
+DELETE FROM udon_member WHERE password='a';
 
 CREATE TABLE udon_market(
 	id VARCHAR2(100) PRIMARY KEY,
@@ -28,7 +29,7 @@ CREATE TABLE udon_market(
 	item VARCHAR2(100) CHECK (item IN('과일','채소','수산물')) NOT NULL,
 	info VARCHAR2(100) NOT NULL,
 	market_no VARCHAR2(100),
-	CONSTRAINT undon_market_fk FOREIGN KEY(id) REFERENCES udon_member(id), 
+	CONSTRAINT undon_market_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE, 
 	CONSTRAINT market_no_uniq  UNIQUE(market_no)
 )
 
@@ -47,7 +48,7 @@ CREATE TABLE udon_market_board(
 	time_posted DATE NOT NULL,
 	hits NUMBER DEFAULT 0,
 	id VARCHAR2(100) NOT NULL,
-	CONSTRAINT undon_market_board_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
+	CONSTRAINT undon_market_board_fk FOREIGN KEY(id) REFERENCES udon_market(id) ON DELETE CASCADE  
 )
 CREATE SEQUENCE undon_market_board_seq;
 
@@ -70,7 +71,7 @@ CREATE TABLE udon_comment(
 	board_no NUMBER NOT NULL,
 	id VARCHAR2(100) NOT NULL,
 	CONSTRAINT comment_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
-	CONSTRAINT comment_id_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
+	CONSTRAINT comment_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )
 CREATE SEQUENCE udon_comment_seq;
 
@@ -87,10 +88,11 @@ COMMIT
 CREATE TABLE udon_like (
 	board_no PRIMARY KEY ,
 	id NOT NULL,
-	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no),  
-	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
+	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
+	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )
 
+DROP TABLE udon_like;
 SELECT * FROM udon_like;
 
 COMMIT
