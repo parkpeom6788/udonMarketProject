@@ -11,21 +11,10 @@
 	<tbody>
 		<tr>
 			<td colspan="4">
-				<!-- <pre style="font-family: 'Jua', sans-serif"><font size="4"> -->
 					<c:if test="${requestScope.vo.imageName != null }">
 						<img src="saveData/${requestScope.vo.imageName }" width="250" height="250">
 					</c:if>
 					${requestScope.vo.content}
-				<!-- </font> -->
-				<!-- </pre> -->
-	<%-- 			 <pre>
-					<c:if test="${requestScope.filename1 != null}">
-				 		<font size="4">${requestScope.vo.content}</font>
-				 	</c:if>
-				 	<c:otherwise>
-				 		<font size="4">${requestScope.vo.content}</font>
-				 	</c:otherwise>	
-				 </pre> --%>
 			</td>
 		</tr>
 		<tr align="center">

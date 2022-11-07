@@ -56,6 +56,7 @@ ALTER TABLE udon_market_board ADD image_name VARCHAR2(100) DEFAULT NULL;
 
 DROP SEQUENCE undon_market_board_seq;
 DROP TABLE udon_market_board;
+ALTER TABLE udon_market_board DROP COLUMN heart_count;
 
 INSERT INTO udon_market_board(board_no,title,content,time_posted,id) VALUES(undon_market_board_seq.nextval,'우동마켓','오늘은 목요일',SYSDATE,'java4');
 INSERT INTO udon_market_board(board_no,title,content,time_posted,id) VALUES(undon_market_board_seq.nextval,'우동마켓1','오늘은 목요일',SYSDATE,'java4');
@@ -86,8 +87,9 @@ SELECT * FROM udon_comment;
 COMMIT
 
 CREATE TABLE udon_like (
-	board_no PRIMARY KEY ,
+	board_no PRIMARY KEY,
 	id NOT NULL,
+	heart_count NUMBER DEFAULT 0,
 	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
 	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )
