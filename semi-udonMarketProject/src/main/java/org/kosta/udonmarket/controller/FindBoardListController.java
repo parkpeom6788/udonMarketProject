@@ -29,6 +29,7 @@ public class FindBoardListController implements Controller {
 		request.setAttribute("marketVO", marketVO);
 		
 		ArrayList<MarketBoardVO> list = MarketBoardDAO.getInstance().findBoardList(id, pagination);	// 게시글목록 부분
+		request.setAttribute("id", id);
 		request.setAttribute("pagination", pagination);	// 페이징버튼 부분
 		request.setAttribute("boardList", list);
 		request.setAttribute("url", "board/list.jsp");

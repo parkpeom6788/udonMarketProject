@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -75,8 +74,8 @@ public class WritePostController implements Controller {
 			
 			String filename1 = mr.getFilesystemName(file1);
 			
-		//	File file2 = new File("C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp");
-			
+			File file2 = new File("C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp");
+
 			BufferedReader br = null;
 			PrintWriter pw = null;
 			
