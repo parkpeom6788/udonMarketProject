@@ -22,7 +22,7 @@ public class FrontControllerServlet extends HttpServlet {
 			
     		boolean checkResult=CheckLoginInterceptor.getInstance().checkLogin(request, controllerName);
     		if(checkResult==false) {
-    			response.sendRedirect("LoginFormController.do");
+    			response.sendRedirect("member/interceptor-result.jsp");
     			return;
     		}
     		
