@@ -33,6 +33,7 @@
 			<th style="color: white">글번호</th>
 			<th style="color: white">제목</th>
 			<th style="color: white">작성일</th>
+			<th style="color: white">조회수</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,6 +42,7 @@
 			<td style="text-align: center">${list.boardNo }</td>
 			<td><a href="BoardDetailController.do?board_no=${list.boardNo}&id=${requestScope.id }">${list.title }</a></td>
 			<td style="text-align: center">${list.timePosted }</td>
+			<td style="text-align: center">${list.hits }</td>
 		</tr>
 		</c:forEach>
 	</tbody>

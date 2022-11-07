@@ -69,7 +69,7 @@ CREATE TABLE udon_comment(
 	comment_time_posted DATE NOT NULL,
 	board_no NUMBER NOT NULL,
 	id VARCHAR2(100) NOT NULL,
-	CONSTRAINT comment_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no),  
+	CONSTRAINT comment_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
 	CONSTRAINT comment_id_fk FOREIGN KEY(id) REFERENCES udon_member(id)  
 )
 CREATE SEQUENCE udon_comment_seq;
