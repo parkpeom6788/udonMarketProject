@@ -17,7 +17,8 @@ public class CheckLoginInterceptor {
 		permitAllList.add("LoginFormController");
 		permitAllList.add("RegisterMemberController");
 		permitAllList.add("RegisterMemberFormController");
-		permitAllList.add("FindIdPasswordFormController");
+		permitAllList.add("FindIdFormController");
+		permitAllList.add("FindPasswordFormController");
 		permitAllList.add("FindIdController");
 		permitAllList.add("FindPasswordController");
 	}
@@ -29,7 +30,6 @@ public class CheckLoginInterceptor {
 		if(permitAllList.contains(controllerName)==false) {
 			HttpSession session=request.getSession(false);
 			if(session==null||session.getAttribute("mvo")==null) {
-				System.out.println(controllerName+"=> 비인증 상태이므로 로그인해야 함");
 				result=false;
 			}
 		}
