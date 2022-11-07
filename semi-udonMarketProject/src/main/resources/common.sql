@@ -89,7 +89,6 @@ COMMIT
 CREATE TABLE udon_like (
 	board_no PRIMARY KEY,
 	id NOT NULL,
-	heart_count NUMBER DEFAULT 0,
 	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
 	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )

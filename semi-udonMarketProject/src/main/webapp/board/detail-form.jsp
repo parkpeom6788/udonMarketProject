@@ -30,19 +30,23 @@
 	<!-- 좋아요 부분 -->
 	<tfoot>
 			<tr>
-			<td>
-				<span id="checkResult"><input type="button" value="♡" id="heart" onclick="checkLove()"/></span>
-			</td>
+				<td>
+					<button type="button" onclick=checkLove2()>♡</button>
+					<span id="checkResult">${requestScope.count}</span>
+				</td>
 			</tr>
 	</tfoot>		
 	<!-- 좋아요 부분   -->
 </table>
+		
 		<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
 			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 		</form>
+	
 		<form id="updateForm" action="UpdateBoardFormController.do?id=${requestScope.id }" method="post">
 			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 		</form>
+		
 	<script type="text/javascript">
 		function deletePost() {
 			if(confirm("삭제하시겠습니까?")) {
@@ -54,33 +58,28 @@
 				document.getElementById("updateForm").submit();
 			}
 		}
-		
-		/* ajax 좋아요 부분 */
-		function checkLove() {
-			let checkFlag = false;
-			let heart = document.getElementById("heart").value; //하트값 ♡
+	</script>	
+	
+	<script type="text/javascript">
+		function checkLove2() {
+			alert("하이");
+			
 			let checkResultSpan = document.getElementById("checkResult");
-		
 			let xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = function() {				
-				
-				if(xhr.readyState == 4 && xhr.status == 200) {
+			xhr.onreadystatechange = function() {				
+					if(xhr.readyState == 4 && xhr.status == 200) {
 						let message = xhr.responseText;
-						alert("좋아요를 클릭하셨습니다.");
-					if(message == "ok") {
-						checkResultSpan.innerHTML = "<img src=img/hart1.png>";
-						checkFlag = true;
-			} else {
-				checkResultSpan.innerHTML="<img src=img/hart2.png width=150px height=150px>";
-				checkFlag = false;
+						if(message == "ok") {
+							checkResultSpan.innerHTML = "<font color=red>♥</font>";
+						} else {
+							checkResultSpan.innerHTML = "<font color=white>♡</font>";
+							}
+						}
 				}
+				xhr.open("get","CheckLoveController.do?id="${requestScope.id}"&board_no="${requestScope.vo.boardNo});
+				xhr.send();
 			}
 		}
-			xhr.open("get","CheckLoveController.do?heart="+heart);
-			xhr.send();
-		}
-		//
-		/* ajax 좋아요 부분 */
 	</script>
 	<br>
 	<c:import url="/comment/comment.jsp"></c:import>

@@ -1,44 +1,36 @@
 package org.kosta.udonmarket.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.udonmarket.model.LikeDAO;
 import org.kosta.udonmarket.model.MarketBoardDAO;
 import org.kosta.udonmarket.model.MemberDAO;
 import org.kosta.udonmarket.model.MemberVO;
 
 public class CheckLoveController implements Controller {
-
+	
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession(false);
 		
-		// 2. 하트 체크 해제만 되면 id 와 board_no 일치하는 회원이 한번만 좋아요를 할수있게할것임
-		// 3. 좋아요 개수 udon_like 테이블 컬럼에 좋아요 개수 컬럼 추가 해서 db에 반영할것임
-		//HttpSession session = request.getSession(false);
-		//MemberVO memberVO= (MemberVO)session.getAttribute("mvo");
-		//String boardNo =request.getParameter("board_no");
-
+		MemberVO memberVO= (MemberVO)session.getAttribute("mvo");
 		
-		// 1. 일단 하트  체크 해제 되는지 부터  
-
-		boolean result = request.getParameter("checkFlag") != null; 
-	    
-		System.out.println(result); 
+		String id = memberVO.getId(); // 사용자 아이디 
+		Long boardNo = Long.parseLong("board_no"); // 게시물 번호 
 		
-
-		String heart = request.getParameter("heart");
-	    
-		System.out.println(heart); 
-
 		String message = null;
-		
-		if(heart.equals("♡")) {
-			message ="ok";
-		} else {
-			message ="fail";
-		}
-		
+	
+		if(LikeDAO.getInstance().select(id, boardNo)) { // 사용자가 있으면
+				LikeDAO.getInstance().delete(id, boardNo); // 좋아요 삭제 
+					message = "fail";
+		} else { // 사용자가 없으면
+				LikeDAO.getInstance().insert(id, boardNo); // 좋아요 추가 
+					message = "ok";
+		}	
 		request.setAttribute("responsebody", message);
 		return "AjaxView";
 	}

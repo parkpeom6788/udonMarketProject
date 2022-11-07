@@ -29,4 +29,29 @@ select * from udon_market_board;
 
 select IMAGE_NAME  from udon_market_board where BOARD_NO = 17;
 
+select count(*) from udon_like where id = 'java' and board_no = '2';
 
+select * from udon_market_board;
+select * from udon_member;
+
+CREATE TABLE udon_like (
+	board_no ,
+	id ,
+	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ,
+	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) 
+)
+
+-- 좋아요 했는지 확인 -> boolean
+select id , board_no from udon_like where id = 'java2' and  board_no = '30';
+-- 좋아요 추가
+insert into udon_like(id,board_no) values('java','30');
+insert into udon_like(id,board_no) values('java2','30');
+insert into udon_like(id,board_no) values('java3','30');
+
+-- 좋아요 삭제
+delete from udon_like where id = 'java' and board_no = '30';
+
+-- 좋아요 개수 조회
+select count(*) from udon_like where board_no = '30';  
+
+commit
