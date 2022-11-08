@@ -31,14 +31,14 @@
 	<tfoot>
 			<tr>
 				<td>
-					<button type="button" onclick=checkLove2()>♡</button>
-					<span id="checkResult">${requestScope.count}</span>
+					<!-- <button type="button" id="heart" onclick="checkLove2()"></button> -->
+					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})"><font color="blue">♡</font></span>
+					<span id="heartCount">${requestScope.count}</span>
 				</td>
 			</tr>
 	</tfoot>		
 	<!-- 좋아요 부분   -->
 </table>
-		
 		<form id="deleteForm" action="DeleteBoardController.do?id=${requestScope.id }" method="post">
 			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 		</form>
@@ -46,23 +46,48 @@
 		<form id="updateForm" action="UpdateBoardFormController.do?id=${requestScope.id }" method="post">
 			<input type="hidden" name="board_no" value="${requestScope.vo.boardNo}">
 		</form>
-		
 	<script type="text/javascript">
-		function deletePost() {
-			if(confirm("삭제하시겠습니까?")) {
-				document.getElementById("deleteForm").submit();
+	
+	function deletePost() {
+		if(confirm("삭제하시겠습니까?")) {
+			document.getElementById("deleteForm").submit();
 			}
 		}
-		function updatePost() {
-			if(confirm("수정하시겠습니까?")) {
-				document.getElementById("updateForm").submit();
+	function updatePost() {
+		if(confirm("수정하시겠습니까?")) {
+			document.getElementById("updateForm").submit();
+		}
+	}
+		
+	function checkHeart(boardNo){
+		let heartSpan = document.getElementById("heartSpan");
+		let heartCount = document.getElementById("heartCount");
+
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState ==4 && xhr.status ==200){
+				let result = JSON.parse(xhr.responseText);
+				if(result.message == "ok"){
+					alert(heartSpan.innerHTML);
+					heartSpan.innerHTML = "<font color=red>☆</font>";
+					alert(heartSpan.innerHTML);
+					heartCount.innerHTML = result.totalCount;
+				}
+				else(result.message == "fail"){
+					heartSpan.innerHTML = "<font color=red>♡</font>";
+					heartCount.innerHTML = result.totalCount;
+				}
 			}
 		}
+		xhr.open("get", "CheckLoveController.do?board_no="+boardNo);
+		xhr.send();
+	}	
 	</script>	
 	
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 		function checkLove2() {
-			alert("하이");
+			
+			alert("gggg");
 			
 			let checkResultSpan = document.getElementById("checkResult");
 			let xhr = new XMLHttpRequest();
@@ -73,13 +98,12 @@
 							checkResultSpan.innerHTML = "<font color=red>♥</font>";
 						} else {
 							checkResultSpan.innerHTML = "<font color=white>♡</font>";
-							}
 						}
+					}
 				}
-				xhr.open("get","CheckLoveController.do?id="${requestScope.id}"&board_no="${requestScope.vo.boardNo});
+				xhr.open("get","CheckLoveController.do?id="${sessionScope.memberVO.id}"&board_no="${requestScope.vo.boardNo});
 				xhr.send();
 			}
-		}
-	</script>
+	</script> -->
 	<br>
 	<c:import url="/comment/comment.jsp"></c:import>

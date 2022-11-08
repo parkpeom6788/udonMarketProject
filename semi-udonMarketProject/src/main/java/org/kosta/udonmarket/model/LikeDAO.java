@@ -36,15 +36,13 @@ public class LikeDAO {
 		boolean flag = false;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select id , board_no from udon_like where id = ? and  board_no = ?";
+			String sql = "select COUNT(*) from udon_like where id = ? and  board_no = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setLong(2,board_no);
 			
 			rs = pstmt.executeQuery();
-		
-			if(rs.next()) {
-				// 있으면 true 
+			if(rs.next() && rs.getInt(1)>0) {	 // 있으면
 				flag = true;
 			}
 		} finally {
@@ -52,8 +50,9 @@ public class LikeDAO {
 		}
 		return flag;
 	}
+	
 	// 좋아요 추가
-	public void insert(String id,Long board_no) throws SQLException {
+public void insert(String id,Long board_no) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {

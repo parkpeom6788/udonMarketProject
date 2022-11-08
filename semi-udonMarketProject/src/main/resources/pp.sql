@@ -55,3 +55,12 @@ delete from udon_like where id = 'java' and board_no = '30';
 select count(*) from udon_like where board_no = '30';  
 
 commit
+
+-- 좋아요 체크
+select * from udon_like;
+select COUNT(*) from udon_like where id = 'java4' and  board_no = 27;
+delete from udon_like where id = 'java4' and board_no = '24';
+
+
+
+
