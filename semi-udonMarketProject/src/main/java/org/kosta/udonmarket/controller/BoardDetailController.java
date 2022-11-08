@@ -42,7 +42,7 @@ public class BoardDetailController implements Controller {
 				MarketBoardDAO.getInstance().hit(no);
 				listhits.add(no);
 			}
-		request.setAttribute("id", id);
+		request.setAttribute("id",  request.getParameter("id"));
 		
 		//이미지
 		request.setAttribute("vo", marketBoardVO);
