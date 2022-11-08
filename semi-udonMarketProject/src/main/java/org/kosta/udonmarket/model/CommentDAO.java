@@ -42,6 +42,7 @@ public class CommentDAO {
 			sql.append("SELECT comment_no, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, id, board_no ");
 			sql.append("FROM udon_comment ");
 			sql.append("WHERE board_no = ?");
+			sql.append("ORDER BY comment_no DESC");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setLong(1, boardNo);
 			rs = pstmt.executeQuery();

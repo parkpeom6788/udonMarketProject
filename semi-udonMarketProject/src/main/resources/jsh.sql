@@ -37,7 +37,8 @@ SELECT COUNT(*) FROM udon_market_board WHERE id='java4';
 -- findCommentList() 댓글 조회하기
 SELECT comment_no, comment_content, TO_CHAR(comment_time_posted, 'YYYY.MM.DD. HH24:MI') AS comment_time_posted, id, board_no
 FROM udon_comment
-WHERE board_no = 1;
+WHERE board_no = 40
+ORDER BY comment_no DESC;
 
 -- udon_comment 테이블의 comment_content 의 타입을 VARCHAR2(100) 에서 CLOB으로 변경
 ALTER TABLE udon_comment ADD content CLOB;

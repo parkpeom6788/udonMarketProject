@@ -79,27 +79,5 @@
 		xhr.send();
 	}	
 	</script>	
-	
-<!-- 	<script type="text/javascript">
-		function checkLove2() {
-			
-			alert("gggg");
-			
-			let checkResultSpan = document.getElementById("checkResult");
-			let xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {				
-					if(xhr.readyState == 4 && xhr.status == 200) {
-						let message = xhr.responseText;
-						if(message == "ok") {
-							checkResultSpan.innerHTML = "<font color=red>♥</font>";
-						} else {
-							checkResultSpan.innerHTML = "<font color=white>♡</font>";
-						}
-					}
-				}
-				xhr.open("get","CheckLoveController.do?id="${sessionScope.memberVO.id}"&board_no="${requestScope.vo.boardNo});
-				xhr.send();
-			}
-	</script> -->
 	<br>
 	<c:import url="/comment/comment.jsp"></c:import>
