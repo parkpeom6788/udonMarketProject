@@ -19,8 +19,6 @@ INSERT INTO udon_member(id,password,name,member_no,address,tel,member_type) VALU
 SELECT * FROM udon_member;
 COMMIT
 
-DELETE FROM udon_member WHERE password='a';
-
 CREATE TABLE udon_market(
 	id VARCHAR2(100) PRIMARY KEY,
 	market_name VARCHAR2(100) NOT NULL,
@@ -48,6 +46,7 @@ CREATE TABLE udon_market_board(
 	time_posted DATE NOT NULL,
 	hits NUMBER DEFAULT 0,
 	id VARCHAR2(100) NOT NULL,
+	image_name VARCHAR2(100) DEFAULT NULL,
 	CONSTRAINT undon_market_board_fk FOREIGN KEY(id) REFERENCES udon_market(id) ON DELETE CASCADE  
 )
 CREATE SEQUENCE undon_market_board_seq;
@@ -93,11 +92,9 @@ CREATE TABLE udon_like (
 	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )
 
-DELETE FROM udon_like;
-
 DROP TABLE udon_like;
 SELECT * FROM udon_like;
 COMMIT
-select * from udon_member where id='java4';
+
 
 
