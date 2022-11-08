@@ -3,7 +3,6 @@ package org.kosta.udonmarket.controller;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.kosta.udonmarket.model.MemberDAO;
 import org.kosta.udonmarket.model.MemberVO;
@@ -27,8 +26,8 @@ public class UpdateMemberInfoController implements Controller {
 		MemberDAO.getInstance().updateMember(memberVO);
 		MemberVO mvo = MemberDAO.getInstance().findMemberById(id);
 		request.getSession(false).setAttribute("mvo", mvo);
-		request.setAttribute("url", "mypage/mypage-info.jsp");
-		return "layout.jsp";
+
+		return "MypageFormController.do";
 	}
 
 }

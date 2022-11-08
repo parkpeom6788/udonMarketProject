@@ -18,7 +18,7 @@
 			</td>
 		</tr>
 		<tr align="center">
-			<td>
+			<td colspan="4">
 					<a href="FindBoardListController.do?id=${requestScope.id }"><button type="button">뒤로가기</button></a>
 			<c:if test="${sessionScope.memberVO.id == requestScope.id }">
 						<button type="button" onclick="deletePost()">삭제</button>			

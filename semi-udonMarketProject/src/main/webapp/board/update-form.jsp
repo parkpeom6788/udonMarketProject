@@ -22,6 +22,6 @@
 </table>
 	<div align="center">
 		<button type="submit">수정 완료</button>
-		<button type="submit">수정 취소</button>
+		<a href="BoardDetailController.do?board_no=${marketBoardVO.boardNo}"><button type="button">수정취소</button></a>
 	</div>
 </form>
