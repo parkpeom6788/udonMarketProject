@@ -31,8 +31,7 @@
 	<tfoot>
 			<tr>
 				<td>
-					<!-- <button type="button" id="heart" onclick="checkLove2()"></button> -->
-					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})"><font color="blue">♡</font></span>
+					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})"><font color="red">♡</font></span>
 					<span id="heartCount">${requestScope.count}</span>
 				</td>
 			</tr>
@@ -68,15 +67,12 @@
 			if(xhr.readyState ==4 && xhr.status ==200){
 				let result = JSON.parse(xhr.responseText);
 				if(result.message == "ok"){
-					alert(heartSpan.innerHTML);
-					heartSpan.innerHTML = "<font color=red>☆</font>";
-					alert(heartSpan.innerHTML);
-					heartCount.innerHTML = result.totalCount;
+					heartSpan.innerHTML = "<font color=red>♥</font>";
 				}
-				else(result.message == "fail"){
+				else{
 					heartSpan.innerHTML = "<font color=red>♡</font>";
-					heartCount.innerHTML = result.totalCount;
 				}
+				heartCount.innerHTML = result.totalCount;
 			}
 		}
 		xhr.open("get", "CheckLoveController.do?board_no="+boardNo);
