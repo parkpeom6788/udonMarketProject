@@ -51,8 +51,6 @@ CREATE TABLE udon_market_board(
 )
 CREATE SEQUENCE undon_market_board_seq;
 
-ALTER TABLE udon_market_board ADD image_name VARCHAR2(100) DEFAULT NULL;
-
 DROP SEQUENCE undon_market_board_seq;
 DROP TABLE udon_market_board;
 ALTER TABLE udon_market_board DROP COLUMN heart_count;
