@@ -9,13 +9,17 @@ import org.kosta.udonmarket.model.MarketBoardDAO;
 import org.kosta.udonmarket.model.MarketBoardVO;
 import org.kosta.udonmarket.model.MarketDAO;
 import org.kosta.udonmarket.model.MarketVO;
+import org.kosta.udonmarket.model.MemberVO;
 import org.kosta.udonmarket.model.Pagination;
 
 public class FindBoardListController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = request.getParameter("id");
+		//String id = request.getParameter("id");
+		MemberVO memberVO = (MemberVO) request.getSession(false).getAttribute("mvo");
+		String id = memberVO.getId();
+		
 		String pageNo = request.getParameter("pageNo");
 		Pagination pagination = null;
 		int totalPostCount = MarketBoardDAO.getInstance().getTotalPostCount(id);

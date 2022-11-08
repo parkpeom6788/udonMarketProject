@@ -41,7 +41,7 @@
 	  
 	if(checkFlag==false){
 		alert("상점 등록 정보를 확인해주세요");
-		Event.preventDefault();
+		event.preventDefault();
 	}
 }
   function checkMarketNo(){
@@ -51,15 +51,15 @@
 	  let checkMarketNo = document.getElementById("checkResultNo");
 	  
 	  if(marketNo.length != 8){
-		  checkMarketNo.innerHTML = "사업자 번호는 8자 입니다";
+		  checkMarketNo.innerHTML = "<font color=red>사업자 번호는 8자 입니다</font>";
 	  }else{
 		  xhr.onreadystatechange=function(){
 			  if(xhr.readyState==4&&xhr.status==200){
 				  if(xhr.responseText=="ok"){
-					  checkMarketNo.innerHTML = "사용가능한 사업자번호입니다";
+					  checkMarketNo.innerHTML = "<font color=green>사용가능한 사업자번호입니다</font>";
 					  checkFlag = true;
 				  }else{
-					  checkMarketNo.innerHTML = "사업자번호가 중복됩니다";
+					  checkMarketNo.innerHTML = "<font color=red>사업자번호가 중복됩니다</font>";
 				  }
 			  }
 		  }
@@ -68,18 +68,6 @@
 	  }
   }
 </script> 
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

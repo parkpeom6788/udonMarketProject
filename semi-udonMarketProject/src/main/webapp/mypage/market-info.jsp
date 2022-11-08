@@ -27,10 +27,23 @@
 		<button type="submit" class="btn-lg">수정</button>
 	</form>
 
-	<a href="DeleteMarketController.do?no=${requestScope.marketVO.marketNo}" style="float: right;">
-	<input type="hidden" name="marketNo" value="${requestScope.marketVO.marketNo}">
-	<font size="5px">상점삭제</font></a>
+	<a href="javascript:deleteMarket()" style="float: right;">
+		<font size="5px">상점삭제</font>
+	</a>
 </div>
+
+<form id="deleteMarketForm" action="DeleteMarketController.do" method="post">
+	<input type="hidden" name="no" value="${requestScope.marketVO.marketNo}">
+	<input type="hidden" name="marketNo" value="${requestScope.marketVO.marketNo}">
+</form>
+
+<script type="text/javascript">
+	function deleteMarket() {
+		if(confirm("상점삭제 하시겠습니까?")){
+			document.getElementById("deleteMarketForm").submit();
+		}
+	}
+</script>
 
 
 

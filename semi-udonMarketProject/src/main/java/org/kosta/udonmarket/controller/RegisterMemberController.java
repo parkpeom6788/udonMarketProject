@@ -2,6 +2,7 @@ package org.kosta.udonmarket.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.kosta.udonmarket.model.MemberDAO;
 import org.kosta.udonmarket.model.MemberVO;
@@ -17,7 +18,11 @@ public class RegisterMemberController implements Controller {
 		String no = request.getParameter("no");
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
-		dao.registerMember(new MemberVO(id,password,0,name,no,address,tel));
+		MemberVO memberVO = new MemberVO(id,password,0,name,no,address,tel);
+		dao.registerMember(memberVO);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("mvo", memberVO);
 		
 		return  "redirect:member/register-member-result.jsp";
 	}

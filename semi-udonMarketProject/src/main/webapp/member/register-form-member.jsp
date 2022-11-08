@@ -65,15 +65,15 @@ function checkId(){
 	let checkResultId = document.getElementById("checkResultId");
 	
 	if(id.length<4){
-		checkResultId.innerHTML="아이디는 4자 이상이여야 합니다";
+		checkResultId.innerHTML="<font color=red>아이디는 4자 이상이여야 합니다</font>";
 	}else{
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4&&xhr.status==200){
 				if(xhr.responseText=="ok"){
-				checkResultId.innerHTML="사용가능한 아이디입니다";
+				checkResultId.innerHTML="<font color=green>사용가능한 아이디입니다</font>";
 				checkFlag=true;
 				}else{
-				checkResultId.innerHTML="아이디가 중복됩니다";
+				checkResultId.innerHTML="<font color=red>아이디가 중복됩니다</font>";
 				}
 			}
 		}
