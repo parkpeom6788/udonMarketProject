@@ -26,7 +26,7 @@ function check(event){
 	let address = document.getElementById("address").value;
 	let addressCheck = "판교";
 	
-	if(password.length>4){
+	if(password.length<5){
 		alert("비밀번호는 5자 이상이여야합니다");
 		event.preventDefault();
 		return;

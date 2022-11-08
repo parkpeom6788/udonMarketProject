@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<h1>상점등록</h1>
 <form action="${pageContext.request.contextPath}/RegisterMarketController.do" method="post" onsubmit="checkRegisterForm(event)">
   <input type="text" class="form-control-lg" name="id" readonly="readonly" value="${sessionScope.mvo.id}"><br><br>
   <input type="text" class="form-control-lg" name="marketName" placeholder="상점명" required="required"><br><br>
@@ -13,7 +15,7 @@
   <input type="text" class="form-control-lg" name="marketNo" id="marketNo" placeholder="사업자등록번호" required="required" onkeyup="checkMarketNo()">
   (00000-00 형식을 지켜주세요)
   <span id="checkResultNo"></span><br><br>
-  <button type="submit">상점등록</button>
+  <button type="submit" class="btn-lg">상점등록</button>
 </form>
 <script type="text/javascript">
 
