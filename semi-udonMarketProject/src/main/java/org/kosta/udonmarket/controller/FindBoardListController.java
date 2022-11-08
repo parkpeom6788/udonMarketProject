@@ -16,10 +16,7 @@ public class FindBoardListController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//String id = request.getParameter("id");
-		MemberVO memberVO = (MemberVO) request.getSession(false).getAttribute("mvo");
-		String id = memberVO.getId();
-		
+		String id = request.getParameter("id");
 		String pageNo = request.getParameter("pageNo");
 		Pagination pagination = null;
 		int totalPostCount = MarketBoardDAO.getInstance().getTotalPostCount(id);

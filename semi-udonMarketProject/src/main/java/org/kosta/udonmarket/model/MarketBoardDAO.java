@@ -122,7 +122,7 @@ public class MarketBoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT rnum,board_no, title, time_posted, hits ");
+			sql.append("SELECT board_no, title, time_posted, hits ");
 			sql.append("FROM( ");
 			sql.append("SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, TO_CHAR(time_posted,'YYYY/MM/DD') AS time_posted,hits ,id ");
 			sql.append("FROM udon_market_board ");
@@ -136,7 +136,7 @@ public class MarketBoardDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MarketBoardVO marketBoardVO = new MarketBoardVO();
-				marketBoardVO.setBoardNo(rs.getLong("rnum"));
+				marketBoardVO.setBoardNo(rs.getLong("board_no"));
 				marketBoardVO.setTitle(rs.getString("title"));
 				marketBoardVO.setTimePosted(rs.getString("time_posted"));
 				marketBoardVO.setHits(rs.getLong("hits"));
