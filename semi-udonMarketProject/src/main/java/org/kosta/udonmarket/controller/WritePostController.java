@@ -108,6 +108,9 @@ public class WritePostController implements Controller , Serializable{
 			e.printStackTrace();
 		}
 		
-		return "redirect:FindBoardListController.do";	// redirect로 보내야 새로고침 시 글작성이 더 이상 안됩니다
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("marketVO", marketVO);
+		
+		return "FindBoardListController.do?id="+id;	// redirect로 보내야 새로고침 시 글작성이 더 이상 안됩니다
 	}
 }
