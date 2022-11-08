@@ -114,9 +114,12 @@ SELECT * FROM udon_like;
 DELETE FROM udon_like WHERE board_no=10;
 select id from udon_like where id = 'java6' and  board_no = 24;
 commit
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/parkpeom6788/udonMarketProject.git
 
 
 

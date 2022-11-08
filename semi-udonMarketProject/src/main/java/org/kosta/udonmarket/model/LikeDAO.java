@@ -47,7 +47,9 @@ public class LikeDAO {
 				flag = true;
 			}
 		} finally {
-			closeAll(rs,pstmt, con);
+
+			closeAll(rs, pstmt, con);
+
 		}
 		return flag;
 	}

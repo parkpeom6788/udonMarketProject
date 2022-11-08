@@ -92,6 +92,9 @@ CREATE TABLE udon_like (
 	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
 	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )
+
+DELETE FROM udon_like;
+
 DROP TABLE udon_like;
 SELECT * FROM udon_like;
 COMMIT

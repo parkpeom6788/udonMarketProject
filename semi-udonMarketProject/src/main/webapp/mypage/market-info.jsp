@@ -71,7 +71,11 @@
 		if(confirm("상점삭제 하시겠습니까?")){
 			document.getElementById("deleteMarketForm").submit();
 		}
+<<<<<<< HEAD
 	}
+=======
+	}
+>>>>>>> branch 'main' of https://github.com/parkpeom6788/udonMarketProject.git
 </script> --%>
 
 
