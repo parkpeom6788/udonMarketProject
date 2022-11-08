@@ -1,7 +1,5 @@
 package org.kosta.udonmarket.controller;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.kosta.udonmarket.model.CheckHeartVO;
 import org.kosta.udonmarket.model.LikeDAO;
-import org.kosta.udonmarket.model.MarketBoardDAO;
-import org.kosta.udonmarket.model.MemberDAO;
 import org.kosta.udonmarket.model.MemberVO;
 
 public class CheckLoveController implements Controller {
@@ -37,6 +33,7 @@ public class CheckLoveController implements Controller {
 		CheckHeartVO checkHeartVO = new CheckHeartVO(message,totalCount);
 		JSONObject json = new JSONObject(checkHeartVO);
 		
+		request.setAttribute("message", message);
 		request.setAttribute("responsebody", json);
 		return "AjaxView";
 	}

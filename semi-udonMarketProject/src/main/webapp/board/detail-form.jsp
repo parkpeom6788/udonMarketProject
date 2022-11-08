@@ -31,7 +31,16 @@
 	<tfoot>
 			<tr>
 				<td>
-					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})"><font color="red">♡</font></span>
+					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})">
+						<c:choose>
+							<c:when test="${requestScope.message==fail }">
+								<font color="red">♡</font>							
+							</c:when>
+							<c:otherwise>
+								<font color="red">♥</font>		
+							</c:otherwise>
+						</c:choose>
+					</span>
 					<span id="heartCount">${requestScope.count}</span>
 				</td>
 			</tr>
