@@ -21,7 +21,7 @@
 	</tbody>
 </table>
 	<div align="center">
-		<button type="submit">수정 완료</button>
-		<button type="submit">수정 취소</button>
+		<button type="submit" class="btn-lg">수정 완료</button>
+		<a href="BoardDetailController.do?board_no=${marketBoardVO.boardNo}"><button type="button" class="btn-lg">수정취소</button></a>
 	</div>
 </form>

@@ -23,6 +23,35 @@
 </table>
 
 <div align="center">
+	<button type="submit" class="btn-lg" onclick="updateMarket()">수정</button>
+	<a href="javascript:deleteMarket()" style="float: right;"><font size="5px">상점삭제</font></a>
+</div>
+
+<form id="updateMarketForm" action="UpdateMarketFormController.do" method="post">
+	<input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
+</form>
+
+<form id="deleteMarketForm" action="DeleteMarketController.do" method="post">
+	<input type="hidden" name="no" value="${requestScope.marketVO.marketNo}">
+	<input type="hidden" name="marketNo" value="${requestScope.marketVO.marketNo}">
+</form>
+
+<script>
+	  function updateMarket() {
+		if(confirm("상점정보를 수정하시겠습니까?")){
+			document.getElementById("updateMarketForm").submit();
+		}
+	}
+	function deleteMarket() {
+		if(confirm("상점삭제 하시겠습니까?")){
+			document.getElementById("deleteMarketForm").submit();
+		}
+	}
+</script>
+
+
+
+<%-- <div align="center">
 	<form action="UpdateMarketFormController.do" method ="get">
 		<button type="submit" class="btn-lg">수정</button>
 	</form>
@@ -43,7 +72,7 @@
 			document.getElementById("deleteMarketForm").submit();
 		}
 	}
-</script>
+</script> --%>
 
 
 

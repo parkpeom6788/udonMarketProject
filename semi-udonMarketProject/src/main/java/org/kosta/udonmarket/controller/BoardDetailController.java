@@ -19,12 +19,20 @@ public class BoardDetailController implements Controller {
 		// 특정사용자 계정 불러옴 
 		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
 		
-		String id = request.getParameter("id");
+	//	String id = request.getParameter("id");
+		String id = memberVO.getId();
 		Long no = Long.parseLong(request.getParameter("board_no"));
 		
 		// 좋아요 개수 조회
 		int count = LikeDAO.getInstance().count(no);
 		request.setAttribute("count", count);
+		
+		// 좋아요 상태 확인
+		boolean checkClick = LikeDAO.getInstance().select(id, no);
+		System.out.println(id);
+		System.out.println(no);
+		System.out.println(checkClick);
+		request.setAttribute("heart", checkClick);
 		
 		// 이미지
 		MarketBoardVO marketBoardVO = MarketBoardDAO.getInstance().boardDetail(no);
@@ -34,7 +42,7 @@ public class BoardDetailController implements Controller {
 				MarketBoardDAO.getInstance().hit(no);
 				listhits.add(no);
 			}
-		request.setAttribute("id", id);
+		request.setAttribute("id",  request.getParameter("id"));
 		
 		//이미지
 		request.setAttribute("vo", marketBoardVO);

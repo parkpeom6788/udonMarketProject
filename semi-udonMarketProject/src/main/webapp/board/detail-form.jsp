@@ -12,18 +12,24 @@
 		<tr>
 			<td colspan="4">
 					<c:if test="${requestScope.vo.imageName != null }">
-						<img src="saveData/${requestScope.vo.imageName }" width="250" height="250">
+						<br>
+						<img src="saveData/${requestScope.vo.imageName }" width="800" height="500">
 					</c:if>
-					${requestScope.vo.content}
+					<div>
+						<br>
+						${requestScope.vo.content}				
+					</div>
 			</td>
 		</tr>
-		<tr align="center">
-			<td>
-					<a href="FindBoardListController.do?id=${requestScope.id }"><button type="button">뒤로가기</button></a>
-			<c:if test="${sessionScope.memberVO.id == requestScope.id }">
-						<button type="button" onclick="deletePost()">삭제</button>			
-						<button type="button" onclick="updatePost()">수정</button>	
-			</c:if>	
+		<tr>
+			<td align="left">
+				<a href="FindBoardListController.do?id=${requestScope.id }">뒤로가기</a>
+			</td>
+			<td colspan="3" align="right">
+				<c:if test="${sessionScope.memberVO.id == requestScope.id }">
+					<button type="button" onclick="updatePost()">수정</button>	
+					<button type="button" onclick="deletePost()">삭제</button>			
+				</c:if>	
 			</td>
 		</tr>
 	</tbody>
@@ -33,7 +39,7 @@
 				<td>
 					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})">
 						<c:choose>
-							<c:when test="${requestScope.message==fail }">
+							<c:when test="${requestScope.heart==false }">
 								<font color="red">♡</font>							
 							</c:when>
 							<c:otherwise>

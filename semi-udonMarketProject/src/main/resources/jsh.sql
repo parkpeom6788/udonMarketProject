@@ -109,6 +109,11 @@ UPDATE udon_comment SET comment_content='댓글이 수정되나요?' WHERE comme
 SELECT * FROM udon_comment;
 COMMIT
 
+-- 좋아요 조회
+SELECT * FROM udon_like;
+DELETE FROM udon_like WHERE board_no=10;
+select id from udon_like where id = 'java6' and  board_no = 24;
+commit
 
 
 
