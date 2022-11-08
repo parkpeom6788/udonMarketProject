@@ -28,8 +28,9 @@ public class LikeDAO {
 		closeAll(pstmt, con);
 	}
 	
+	
 	// 좋아요 했는지 확인 -> boolean
-	public boolean select(String id,Long board_no) throws SQLException {
+	public boolean select (String id,long board_no) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
@@ -40,19 +41,19 @@ public class LikeDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setLong(2,board_no);
-			
+			System.out.println(id+" "+board_no);
 			rs = pstmt.executeQuery();
 			if(rs.next() && rs.getInt(1)>0) {	 // 있으면
 				flag = true;
 			}
 		} finally {
-			closeAll(pstmt, con);
+			closeAll(rs, pstmt, con);
 		}
 		return flag;
 	}
 	
 	// 좋아요 추가
-public void insert(String id,Long board_no) throws SQLException {
+public void insert(String id,Long boardNo) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
@@ -60,8 +61,9 @@ public void insert(String id,Long board_no) throws SQLException {
 			String sql = "INSERT INTO udon_like(id,board_no) VALUES(?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setLong(2,board_no);
-			pstmt.executeUpdate();
+			pstmt.setLong(2,boardNo);
+			int result = pstmt.executeUpdate();
+		
 		} finally {
 			closeAll(pstmt, con);
 		}

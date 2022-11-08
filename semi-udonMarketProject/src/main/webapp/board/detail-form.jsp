@@ -33,7 +33,7 @@
 				<td>
 					<span id="heartSpan" style="cursor: pointer;" onclick="checkHeart(${requestScope.vo.boardNo})">
 						<c:choose>
-							<c:when test="${requestScope.message==fail }">
+							<c:when test="${requestScope.heart==false }">
 								<font color="red">♡</font>							
 							</c:when>
 							<c:otherwise>
