@@ -9,15 +9,9 @@
 			<td class="comList">
 				${list.id }<br>${list.commentContent }<br>${list.commentTimePosted }&nbsp;&nbsp;
 				<c:if test="${sessionScope.mvo.id==list.id }">
-					<span onclick="commentUpdate(${order.index })" style="cursor: pointer" class="text-primary" >수정</span>
+					<span onclick="commentUpdate(${order.index },${list.commentNo})" style="cursor: pointer" class="text-primary" >수정</span>
 					<span onclick="commentDelete(${list.commentNo})" style="cursor: pointer" class="text-secondary" >삭제</span>
-				</c:if>
-				<div id="comDiv" style="display: none">
-					${sessionScope.mvo.id }<br>
-					<input type="text" id="newContent" style="width: 700px; height: 50px" placeholder="수정할 내용을 작성해주세요">
-					<button type="button" style="width: 50px" onclick="updateComment(${list.commentNo})">수정</button>
-					<button type="button" style="width: 50px" onclick="cancleUpdate()">취소</button>
-				</div>				
+				</c:if>				
 			</td>
 		</tr>
 	</c:forEach>
@@ -29,6 +23,14 @@
 		</td>
 	</tr>
 </table>
+
+<div id="comDiv" style="display: none">
+	${sessionScope.mvo.id }<br>
+	<input type="text" id="newContent" style="width: 700px; height: 50px" placeholder="수정할 내용을 작성해주세요">
+	<input type="hidden" id="commentNo"> 
+	<button type="button" style="width: 50px" onclick="updateComment()">수정</button>
+	<button type="button" style="width: 50px" onclick="cancleUpdate()">취소</button>
+</div>
 
 <script>
  	function writeComment(){
@@ -64,18 +66,21 @@
 		}
 	}
 	
-	function commentUpdate(index){
+	function commentUpdate(index,commentNo){
 		let comList = document.getElementsByClassName("comList");
 		let comDiv = document.getElementById("comDiv");
 		comList[index].innerHTML = comDiv.innerHTML;
+		document.getElementById("commentNo").value = commentNo;
+		
 		
 		let comWrite = document.getElementById("comWrite");
 		comWrite.style.display = "none";
 	}
 	
-	function updateComment(commentNo){
-		let newContent = document.getElementById("newContent");
-		if(newContent.value.trim()==""){
+	function updateComment(){
+		let newContent = document.getElementById("newContent").value;
+		let commentNo = document.getElementById("commentNo").value;
+		if(newContent.trim()==""){
 			alert("수정할 내용을 작성해주세요");
 			newContent.focus();
 			return;
@@ -88,7 +93,7 @@
 		}
 		xhr.open("post","UpdateCommentController.do");
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		xhr.send("commentNo="+commentNo+"&content="+newContent.value);
+		xhr.send("commentNo="+commentNo+"&content="+newContent);
 	}
 	function cancleUpdate(){
 		let result = confirm("수정을 취소하시겠습니까?");

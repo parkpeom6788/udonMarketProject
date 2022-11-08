@@ -9,6 +9,7 @@ import org.kosta.udonmarket.model.MarketBoardDAO;
 import org.kosta.udonmarket.model.MarketBoardVO;
 import org.kosta.udonmarket.model.MarketDAO;
 import org.kosta.udonmarket.model.MarketVO;
+import org.kosta.udonmarket.model.MemberVO;
 import org.kosta.udonmarket.model.Pagination;
 
 public class FindBoardListController implements Controller {
@@ -31,7 +32,7 @@ public class FindBoardListController implements Controller {
 		ArrayList<MarketBoardVO> list = MarketBoardDAO.getInstance().findBoardList(id, pagination);	// 게시글목록 부분
 		request.setAttribute("id", id);
 		request.setAttribute("pagination", pagination);	// 페이징버튼 부분
-		request.setAttribute("boardList", list);
+		request.setAttribute("boardList", list);	// boardNo는 rnum 으로 대체함
 		request.setAttribute("url", "board/list.jsp");
 		
 		return "layout.jsp";

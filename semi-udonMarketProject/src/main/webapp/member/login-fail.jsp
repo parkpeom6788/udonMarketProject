@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>우동마켓</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -13,11 +12,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="container pt-3">
-	<script type="text/javascript">
-      alert("로그인에 실패했습니다.\n아이디와 패스워드를 확인하세요");
-      location.href="${pageContext.request.contextPath}/LoginFormController.do";
-  	</script>
-</div>
+	<div class="container pt-3">
+		<script type="text/javascript">
+		      alert("로그인에 실패했습니다.\n아이디와 패스워드를 확인하세요");
+		      location.href="${pageContext.request.contextPath}/LoginFormController.do";
+	  	</script>
+	</div>
 </body>
 </html>

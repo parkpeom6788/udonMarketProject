@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <h1>비밀번호 확인</h1>
 <form action="${pageContext.request.contextPath}/DeleteMemberController.do" method="post" onsubmit="passCheck(event)">
   <input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
