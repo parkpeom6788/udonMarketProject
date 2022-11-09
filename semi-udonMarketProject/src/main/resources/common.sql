@@ -84,8 +84,9 @@ SELECT * FROM udon_comment;
 COMMIT
 
 CREATE TABLE udon_like (
-	board_no PRIMARY KEY,
-	id NOT NULL,
+	board_no NUMBER,
+	id VARCHAR2(100),
+	CONSTRAINT my_order_detail PRIMARY KEY(board_no,id),
 	CONSTRAINT udon_like_board_no_fk FOREIGN KEY(board_no) REFERENCES udon_market_board(board_no) ON DELETE CASCADE,  
 	CONSTRAINT udon_like_id_fk FOREIGN KEY(id) REFERENCES udon_member(id) ON DELETE CASCADE 
 )
