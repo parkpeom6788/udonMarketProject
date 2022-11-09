@@ -9,7 +9,6 @@ import org.kosta.udonmarket.model.MarketBoardDAO;
 import org.kosta.udonmarket.model.MarketBoardVO;
 import org.kosta.udonmarket.model.MarketDAO;
 import org.kosta.udonmarket.model.MarketVO;
-import org.kosta.udonmarket.model.MemberVO;
 import org.kosta.udonmarket.model.Pagination;
 
 public class FindBoardListController implements Controller {

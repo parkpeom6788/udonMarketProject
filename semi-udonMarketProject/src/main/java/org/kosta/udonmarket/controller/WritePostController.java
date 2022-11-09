@@ -50,9 +50,7 @@ public class WritePostController implements Controller , Serializable{
 		request.setCharacterEncoding("UTF-8");
 		String cp = request.getContextPath();
 		String root = request.getServletContext().getRealPath("/");
-		System.out.println(root);	
 		String path = root + "saveData";
-		System.out.println(path);	
 		
 		File f = new File(path);
 		

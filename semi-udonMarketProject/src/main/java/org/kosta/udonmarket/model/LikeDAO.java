@@ -41,7 +41,6 @@ public class LikeDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setLong(2,board_no);
-			System.out.println(id+" "+board_no);
 			rs = pstmt.executeQuery();
 			if(rs.next() && rs.getInt(1)>0) {	 // 있으면
 				flag = true;
@@ -64,7 +63,7 @@ public void insert(String id,Long boardNo) throws SQLException {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setLong(2,boardNo);
-			int result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		
 		} finally {
 			closeAll(pstmt, con);
