@@ -18,7 +18,9 @@
 			<th> <input class="form-control-lg" type="text"  name="marketInfo" value="${requestScope.marketVO.info}" required="required" ></th>
 		</tr>
 	</table>
-	 <button >수정완료</button>
+	<div class="text-center">
+	 <button type="submit" class="btn-lg btn btn-success">수정완료</button>
+	</div>
  </form>
  
 <script type ="text/javascript">

@@ -20,7 +20,7 @@
 </table>
 
 <div align="center">
-	<button type="submit" class="btn-lg" onclick="updateMember()">수정</button>
+	<button type="submit" class="btn-lg btn btn-success" onclick="updateMember()">수정</button>
 	<a href="javascript:deleteMember()" style="float: right;"><font size="5px">회원탈퇴</font></a>
 </div>
 

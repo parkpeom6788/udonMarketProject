@@ -11,7 +11,7 @@
 	<input class="form-control-lg" type="text" name="no"  id = "no" placeholder="주민번호" required="required"> 9자리 입력하세요 (000000-000 으로 작성하세요)<br><br>
 	<input class="form-control-lg" type="text" name="address" id="address" placeholder="주소" required="required"><br><br>
 	<input class="form-control-lg" type="text" name="tel" id = "tel"  placeholder="전화번호" required="required"> 11자리 입력하세요 (000-0000-0000 으로 작성하세요)<br><br>
-	<button type="submit" class="btn-lg">회원가입</button>
+	<button type="submit" class="btn-lg btn btn-success">회원가입</button>
 </form>
 
 <script type="text/javascript">

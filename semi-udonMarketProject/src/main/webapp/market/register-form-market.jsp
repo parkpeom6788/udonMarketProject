@@ -15,7 +15,7 @@
   <input type="text" class="form-control-lg" name="marketNo" id="marketNo" placeholder="사업자등록번호" required="required" onkeyup="checkMarketNo()">
   (00000-00 형식을 지켜주세요)
   <span id="checkResultNo"></span><br><br>
-  <button type="submit" class="btn-lg">상점등록</button>
+  <button type="submit" class="btn-lg btn btn-success">상점등록</button>
 </form>
 <script type="text/javascript">
 

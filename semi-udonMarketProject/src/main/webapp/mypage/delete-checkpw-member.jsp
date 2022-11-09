@@ -6,7 +6,7 @@
   <input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
   <input type="hidden" id="memberPw" value="${sessionScope.mvo.password}">
   <input type="password" class="form-control-lg" id="pw" name="password" placeholder="패스워드" required="required">
-  <button type="submit">확인</button>
+  <button type="submit" class="btn-lg btn btn-success">확인</button>
 </form>
 <script type ="text/javascript">
   function passCheck(event) {

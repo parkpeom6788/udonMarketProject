@@ -5,7 +5,7 @@
 <form action="${pageContext.request.contextPath}/LoginController.do" method="post">
 	<input type="text" class="form-control-lg" name="id" placeholder="아이디" required="required"><br><br>
 	<input type="password" class="form-control-lg" name="password" placeholder="패스워드" required="required"> <br><br>
-	<button type="submit" class="btn-lg">로그인</button><br><br>
+	<button type="submit" class="btn-lg btn btn-success">로그인</button><br><br>
 </form>
 <a href="${pageContext.request.contextPath}/FindIdFormController.do"> &nbsp;&nbsp;아이디찾기&nbsp;&nbsp;</a>
 <a href="${pageContext.request.contextPath}/FindPasswordFormController.do"> &nbsp;&nbsp;비밀번호찾기&nbsp;&nbsp;</a><br>
