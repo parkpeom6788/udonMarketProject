@@ -24,7 +24,6 @@ public class CheckLoveController implements Controller {
 			LikeDAO.getInstance().delete(id, boardNo); // 좋아요 삭제 
 			message = "fail";
 		} else { // 사용자가 없으면
-			System.out.println("insert : "+id+" "+boardNo);
 			LikeDAO.getInstance().insert(id, boardNo); // 좋아요 추가 
 			message = "ok";
 		}	

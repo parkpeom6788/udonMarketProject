@@ -29,9 +29,6 @@ public class BoardDetailController implements Controller {
 		
 		// 좋아요 상태 확인
 		boolean checkClick = LikeDAO.getInstance().select(id, no);
-		System.out.println(id);
-		System.out.println(no);
-		System.out.println(checkClick);
 		request.setAttribute("heart", checkClick);
 		
 		// 이미지
