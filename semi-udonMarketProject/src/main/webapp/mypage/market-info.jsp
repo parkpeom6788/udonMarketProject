@@ -23,7 +23,7 @@
 </table>
 
 <div align="center">
-	<button type="submit" class="btn-lg" onclick="updateMarket()">수정</button>
+	<button type="submit" class="btn-lg btn btn-success" onclick="updateMarket()">수정</button>
 	<a href="javascript:deleteMarket()" style="float: right;"><font size="5px">상점삭제</font></a>
 </div>
 

@@ -21,7 +21,7 @@
   </table>
   
   <div class="text-center">
-    <button type="submit" class="btn-lg">확인</button>
+    <button type="submit" class="btn-lg btn btn-success">확인</button>
   </div>
 </form>
 

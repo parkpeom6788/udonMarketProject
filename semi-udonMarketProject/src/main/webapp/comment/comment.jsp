@@ -19,7 +19,7 @@
 		<td id="comWrite">
 			${sessionScope.mvo.id }<br>
 			<input type="text" id="commentContent" style="width: 750px; height: 50px" placeholder="상점 후기를 작성해주세요">
-			<button type="button" style="width: 70px" onclick="writeComment()">등록</button>
+			<button type="button" style="width: 70px" onclick="writeComment()" class="btn btn-success">등록</button>
 		</td>
 	</tr>
 </table>
@@ -28,8 +28,8 @@
 	${sessionScope.mvo.id }<br>
 	<input type="text" id="newContent" style="width: 700px; height: 50px" placeholder="수정할 내용을 작성해주세요">
 	<input type="hidden" id="commentNo"> 
-	<button type="button" style="width: 50px" onclick="updateComment()">수정</button>
-	<button type="button" style="width: 50px" onclick="cancleUpdate()">취소</button>
+	<button type="button" onclick="updateComment()" class="btn btn-success">수정</button>
+	<button type="button" onclick="cancleUpdate()" class="btn btn-success">취소</button>
 </div>
 
 <script>

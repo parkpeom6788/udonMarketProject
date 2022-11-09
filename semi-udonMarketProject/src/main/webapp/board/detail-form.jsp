@@ -27,8 +27,8 @@
 			</td>
 			<td colspan="3" align="right">
 				<c:if test="${sessionScope.memberVO.id == requestScope.id }">
-					<button type="button" onclick="updatePost()">수정</button>	
-					<button type="button" onclick="deletePost()">삭제</button>			
+					<button type="button" onclick="updatePost()" class="btn btn-success">수정</button>	
+					<button type="button" onclick="deletePost()" class="btn btn-success">삭제</button>			
 				</c:if>	
 			</td>
 		</tr>

@@ -12,8 +12,8 @@
                                 <div class="col-lg-7">
                                     <h1 class="display-2 mb-5 animated slideInDown">Hello 우동마켓</h1>
 									<form id="inputSearchForm" action="FindMarketByNameController.do" method="get" onsubmit="searchForm(event)">
-                                   		<input id="inputSearch" class="input-search" name="searchInfo" placeholder="상점이름을 검색하세요">
-                               			<button type="submit"><small class="fa fa-search text-body"></small></button>
+                                   		<input id="inputSearch" class="input-search form-control-lg" name="searchInfo" placeholder="상점이름을 검색하세요">
+                               			<button type="submit" class="btn-lg"><small class="fa fa-search text-body"></small></button>
                                    	</form>
                                     <script type="text/javascript">
                                     	function searchForm(event){

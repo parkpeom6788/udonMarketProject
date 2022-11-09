@@ -19,7 +19,7 @@
 			</tr>
 		</table>
 		<div class="text-center">
-			<button type="submit" class="btn btn-success">확인</button>
-			<a href="index.jsp"><button type="button" class="btn btn-success">취소</button></a>
+			<button type="submit" class="btn btn-success btn-lg">확인</button>
+			<a href="index.jsp"><button type="button" class="btn btn-success btn-lg">취소</button></a>
 		</div>
 </form>
