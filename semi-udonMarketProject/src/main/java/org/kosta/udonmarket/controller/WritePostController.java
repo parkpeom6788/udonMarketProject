@@ -77,28 +77,22 @@ public class WritePostController implements Controller , Serializable{
 			
 			String filename1 = mr.getFilesystemName(file1);
 			
-			File file2 = new File("C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp");
-
-			BufferedReader br = null;
-			PrintWriter pw = null;
-			
-			try {
-				String orgFilePath = path + File.separator + filename1;
-				String destDirPath = "C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp\\saveData";
-				br = new BufferedReader(new FileReader(orgFilePath));
-				pw = new PrintWriter(destDirPath + File.separator +filename1);
-				
-				while(br.ready()) {
-					pw.println(br.readLine());
-				}
-			} finally {
-				if(br!= null) {
-					br.close();
-				}
-				if(pw!=null) {
-					pw.close();
-				}
-			}
+			/*
+			 * File file2 = new File(
+			 * "C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp"
+			 * );
+			 * 
+			 * BufferedReader br = null; PrintWriter pw = null;
+			 * 
+			 * try { String orgFilePath = path + File.separator + filename1; String
+			 * destDirPath =
+			 * "C:\\kosta250\\git-udonMarket\\udonMarketProject\\semi-udonMarketProject\\src\\main\\webapp\\saveData";
+			 * br = new BufferedReader(new FileReader(orgFilePath)); pw = new
+			 * PrintWriter(destDirPath + File.separator +filename1);
+			 * 
+			 * while(br.ready()) { pw.println(br.readLine()); } } finally { if(br!= null) {
+			 * br.close(); } if(pw!=null) { pw.close(); } }
+			 */
 			if(session != null || memberVO != null) {
 				MarketBoardDAO.getInstance().posting(title, content, filename1, id);
 			}
